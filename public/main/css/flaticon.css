@@ -1,0 +1,63 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 04/09/2018 07:03
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.eot");
+  src: url("../fonts/Flaticond41d.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.woff") format("woff"),
+       url("../fonts/Flaticon.ttf") format("truetype"),
+       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("Flaticon.html#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+font-style: normal;
+margin-left: 0px;
+}
+
+.flaticon-confetti:before { content: "\f100"; }
+.flaticon-cheers:before { content: "\f101"; }
+.flaticon-fireworks:before { content: "\f102"; }
+.flaticon-cake:before { content: "\f103"; }
+.flaticon-pizza:before { content: "\f104"; }
+.flaticon-balloons:before { content: "\f105"; }
+.flaticon-beer:before { content: "\f106"; }
+.flaticon-camera:before { content: "\f107"; }
+.flaticon-champagne:before { content: "\f108"; }
+.flaticon-stage:before { content: "\f109"; }
+.flaticon-gift:before { content: "\f10a"; }
+.flaticon-engagement:before { content: "\f10b"; }
+.flaticon-wedding-couple:before { content: "\f10c"; }
+.flaticon-glasses:before { content: "\f10d"; }
+.flaticon-newlyweds:before { content: "\f10e"; }
+.flaticon-wedding-location:before { content: "\f10f"; }
+.flaticon-restaurant:before { content: "\f110"; }
+.flaticon-dancing:before { content: "\f111"; }
+.flaticon-flamenco-dancers-sexy-couple-silhouettes:before { content: "\f112"; }
+.flaticon-table:before { content: "\f113"; }
+.flaticon-marriage-couple:before { content: "\f114"; }
+.flaticon-party-dj:before { content: "\f115"; }
+.flaticon-man-in-a-party-dancing-with-people:before { content: "\f116"; }
+.flaticon-fireworks-1:before { content: "\f117"; }
+.flaticon-cheers-1:before { content: "\f118"; }
+.flaticon-party:before { content: "\f119"; }
+.flaticon-dinner-table:before { content: "\f11a"; }
+.flaticon-gift-1:before { content: "\f11b"; }
+.flaticon-balloons-1:before { content: "\f11c"; }
+.flaticon-beer-1:before { content: "\f11d"; }
+.flaticon-newly-married-couple:before { content: "\f11e"; }
+.flaticon-businessmen-having-a-group-conference:before { content: "\f11f"; }
+.flaticon-mask:before { content: "\f120"; }
