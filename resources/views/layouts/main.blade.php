@@ -62,10 +62,11 @@
     <!-- preloader end -->
 
     <!--header start-->
-    <header id="masthead" class="header ttm-header-style-classic-box ttm-header-overlay">
+    <header id="masthead" class="header ttm-header-style-classic">
+
         <!--topbar start-->
         <div class="ttm-topbar-wrapper ttm-bgcolor-skincolor ttm-textcolor-white clearfix">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="ttm-topbar-content">
                     <ul class="top-contact text-left">
                         <li class="list-inline-item"><i class="fa fa-map-marker"></i>
@@ -79,15 +80,12 @@
                                 <a href="mailto:info@example.com"> info@littlemissdamsel.com</a>
                             </li>
                         </ul>
-                        <a class="ttm-btn btn-inline ttm-btncolor-white ttm-icon-btn-right" href="#">Book Event
-                            <i class="fa fa-caret-right"></i>
-                        </a>
                         <div class="ttm-social-links-wrapper list-inline">
                             <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a>
-                                </li>
+                                <li><a href="https://www.facebook.com/Lmdn-167051790625335/">
+                                        <i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.instagram.com/littlemissdamselnigeria/">
+                                        <i class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -124,7 +122,7 @@
                                         <ul class="dropdown">
                                             <li><a href="{{ url('/') }}">Home</a></li>
                                             <li><a href="{{ url('fashion-exhibition') }}">Fashion Exhibition</a></li>
-                                            <li><a href="{{ url('about') }}">About us</a></li>
+{{--                                            <li><a href="{{ url('about') }}">About us</a></li>--}}
                                             <li><a href="{{ url('registration') }}">Registration</a></li>
                                             <li><a href="{{ url('contact') }}">Contact us</a></li>
                                         </ul>
@@ -175,7 +173,7 @@
                                 <ul class="menu-footer-services">
                                     <li><a href="{{ url('/') }}">Home</a></li>
                                     <li><a href="{{ url('fashion-exhibition') }}">Fashion Exhibition</a></li>
-                                    <li><a href="{{ url('about') }}">About</a></li>
+{{--                                    <li><a href="{{ url('about') }}">About</a></li>--}}
                                     <li><a href="{{ url('registration') }}">Registration</a></li>
                                     <li><a href="{{ url('contact') }}">Contact us</a></li>
                                 </ul>

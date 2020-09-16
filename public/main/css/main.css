@@ -67,6 +67,12 @@
 /* ===============================================
     General
 ------------------------*/
+
+.brand-bg{
+    background: url('../../main/bg/bg2.png') fixed no-repeat;
+    background-size: cover;
+}
+
 /** Variables **/
 ul, li{
     padding: 0;
@@ -1682,7 +1688,7 @@ ul.social-icons li a{
     page-title-row
 ------------------------*/
 .ttm-page-title-row {
-    background-image: url(../images/ttm-pagetitle-bg.jpg);
+    background-image: url(../../main/bg/header_bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -1696,7 +1702,7 @@ ul.social-icons li a{
     position: relative;
     display: table;
     width: 100%;
-    height: 540px;
+    height: 300px;
 
 }
 .title-box .page-title-heading h1 {

@@ -156,7 +156,7 @@
     <!--site-main start-->
     <div class="site-main">
 
-        <section class="ttm-row welcome-section clearfix ttm-bgcolor-white">
+        <section class="ttm-row welcome-section clearfix" style="background: url({{ asset('main/bg/bg2.png') }}) fixed no-repeat; background-size: cover;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-lg-6">
@@ -248,7 +248,7 @@
         </section>
 
         <!--gallery-section2 start-->
-        <section class="ttm-row ttm-bgcolor-grey gallery-section2 clearfix">
+        <section class="ttm-row ttm-bgcolor-grey gallery-section2 clearfix" style="background: url({{ asset('main/bg/bg2.png') }}) fixed no-repeat; background-size: cover;">
             <div class="container">
                 <div class="row text-center">
                     <div class="col-lg-12">
@@ -310,22 +310,19 @@
                         <div class="featured-imagebox featured-imagebox-portfolio">
                             <!-- featured-thumbnail-->
                             <div class="featured-thumbnail">
-                                <a href="#"> <img class="img-fluid" src="{{ asset('main/images/gallery/gallery-2.jpg') }}" alt="image"></a>
+                                <a href="#"> <img class="img-fluid" src="{{ asset('main/home/camping1.jpg') }}" alt="image"></a>
                             </div><!-- featured-thumbnail END-->
                             <!-- ttm-box-view-overlay -->
                             <div class="ttm-box-view-overlay">
                                 <div class="ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="Divqi Holiday Party" href="{{ asset('main/images/gallery/gallery-2.jpg') }}" data-rel="prettyPhoto">
+                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="Divqi Holiday Party" href="{{ asset('main/home/camping1.jpg') }}" data-rel="prettyPhoto">
                                         <i class="ti ti-search"></i>
                                     </a>
                                 </div>
                                 <div class="featured-content featured-content-portfolio">
                                     <div class="featured-title">
-                                        <h5><a href="portfolio-details-02.html">Divqi Holiday Party</a></h5>
+                                        <h5><a href="">Camping</a></h5>
                                     </div>
-                                    <span class="category">
-                                            <a href="private-party.html">Corporate</a>
-                                        </span>
                                 </div>
                             </div><!-- ttm-box-view-overlay end-->
                         </div>
@@ -336,76 +333,73 @@
                         <div class="featured-imagebox featured-imagebox-portfolio">
                             <!-- featured-thumbnail-->
                             <div class="featured-thumbnail">
-                                <a href="#"> <img class="img-fluid" src="{{ asset('main/images/gallery/gallery-3.jpg') }}" alt="image"></a>
+                                <a href="#"> <img class="img-fluid" src="{{ asset('main/home/culture1.png') }}" alt="image"></a>
                             </div><!-- featured-thumbnail END-->
                             <!-- ttm-box-view-overlay -->
                             <div class="ttm-box-view-overlay">
                                 <div class="ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="Kids Birthday Party" href="{{ asset('main/images/gallery/gallery-3.jpg') }}" data-rel="prettyPhoto">
+                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]"
+                                       title="Kids Birthday Party"
+                                       href="{{ asset('main/home/culture1.png') }}" data-rel="prettyPhoto">
                                         <i class="ti ti-search"></i>
                                     </a>
                                 </div>
                                 <div class="featured-content featured-content-portfolio">
                                     <div class="featured-title">
-                                        <h5><a href="">Kids Birthday Party</a></h5>
+                                        <h5><a href="">Culture</a></h5>
                                     </div>
-                                    <span class="category">
-                                            <a href="">Private Party</a>
-                                        </span>
                                 </div>
                             </div><!-- ttm-box-view-overlay end-->
                         </div>
                         <!-- featured-item -->
                     </div>
+
                     <div class="ttm-box-col-wrapper col-lg-4 col-md-6">
                         <!-- featured-item -->
                         <div class="featured-imagebox featured-imagebox-portfolio">
                             <!-- featured-thumbnail-->
                             <div class="featured-thumbnail">
                                 <a href="#"> <img class="img-fluid"
-                                                  src="{{ asset('main/images/gallery/gallery-4.jpg') }}" alt="image"></a>
+                                                  src="{{ asset('main/home/culture2.png') }}" alt="image"></a>
                             </div><!-- featured-thumbnail END-->
                             <!-- ttm-box-view-overlay -->
                             <div class="ttm-box-view-overlay">
                                 <div class="ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="Steven and Sofia Wedding" href="https://youtu.be/HkyVTxH2fIM" data-rel="prettyPhoto">
-                                        <i class="ti ti-control-play"></i>
+                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]"
+                                       title="Kids Birthday Party"
+                                       href="{{ asset('main/home/culture2.png') }}" data-rel="prettyPhoto">
+                                        <i class="ti ti-search"></i>
                                     </a>
                                 </div>
                                 <div class="featured-content featured-content-portfolio">
                                     <div class="featured-title">
-                                        <h5><a href="">Steven and Sofia Wedding</a></h5>
+                                        <h5><a href="">Culture</a></h5>
                                     </div>
-                                    <span class="category">
-                                            <a href="">Engagement</a>
-                                        </span>
                                 </div>
                             </div><!-- ttm-box-view-overlay end-->
                         </div>
                         <!-- featured-item -->
                     </div>
+
                     <div class="ttm-box-col-wrapper col-lg-4 col-md-6">
                         <!-- featured-item -->
                         <div class="featured-imagebox featured-imagebox-portfolio">
                             <!-- featured-thumbnail-->
                             <div class="featured-thumbnail">
                                 <a href="#"> <img class="img-fluid"
-                                                  src="{{ asset('main/images/gallery/gallery-6.jpg') }}" alt="image"></a>
+                                                  src="{{ asset('main/home/fashion1.jpg') }}" alt="image"></a>
                             </div><!-- featured-thumbnail END-->
                             <!-- ttm-box-view-overlay -->
                             <div class="ttm-box-view-overlay">
                                 <div class="ttm-media-link">
-                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="Helen Birthday Party" href="{{ asset('main/images/gallery/gallery-6.jpg') }}" data-rel="prettyPhoto">
+                                    <a class="ttm_prettyphoto ttm_image" data-gal="prettyPhoto[gallery1]" title="Fashion" href="{{ asset('main/home/fashion1.jpg') }}" data-rel="prettyPhoto">
                                         <i class="ti ti-control-play"></i>
                                     </a>
                                 </div>
                                 <div class="featured-content featured-content-portfolio">
                                     <div class="featured-title">
-                                        <h5><a href="">Helen Birthday Party</a></h5>
+                                        <h5><a href="">Fashion</a></h5>
                                     </div>
-                                    <span class="category">
-                                            <a href="">Corporate</a>
-                                        </span>
                                 </div>
                             </div><!-- ttm-box-view-overlay end-->
                         </div>
@@ -421,27 +415,29 @@
         </section>
         <!--gallery-section2 end-->
 
-        <!--only-text-section start-->
-        <section class="ttm-row bg-img bg-img9 ttm-bgimage-yes ttm-bgcolor-black ttm-bg only-text-section clearfix">
-            <div class="ttm-row-wrapper-bg-layer ttm-bg-layer"></div>
+        <section class="ttm-row cta-section style2 ttm-bgcolor-skincolor clearfix">
             <div class="container">
-                <div class="row text-center">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="title-box-only text-center ttm-textcolor-white">
-                            <div class="featured-icon">
-                                <div class="ttm-icon ttm-icon_element-size-xl ttm-icon_element-color-white">
-                                    <i class="flaticon flaticon-confetti"></i>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="featured-box iconalign-before-heading">
+                            <div class="featured-content">
+                                <div class="featured-icon">
+                                    <div class="ttm-icon ttm-icon_element-color-white ttm-icon_element-size-sm">
+                                        <i class="ti ti-headphone"></i>
+                                    </div>
+                                </div>
+                                <div class="featured-title">
+                                    <h5 class="ttm-textcolor-white">Become a Little Miss Damsel</h5>
                                 </div>
                             </div>
-                            <h4>Sign Up,</h4>
-                            <h2>To become a <strong class="ttm-strongcolor-skincolor">Little Miss Damsel!</strong> </h2>
-                            <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-round ttm-btn-style-border ttm-btn-color-white  mt-30 mb-35" href="{{ url('registration') }}">Registration</a>
                         </div>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-round ttm-btn-style-border ttm-btn-color-white pull-right res-mt20-767" href="{{ url('registration') }}">Sign up</a>
                     </div>
                 </div>
             </div>
         </section>
-        <!--only-text-section end-->
 
         <!--client-section-->
         <div class="ttm-row client-section style2 ttm-bgcolor-white clearfix">
