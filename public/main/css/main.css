@@ -1908,7 +1908,7 @@ section.error-404 form input{border-width: 2px;background-color: transparent;}
 /* portfolio */
 .ttm-single-content-wrap-box{margin-left: -15px;}
 .ttm-pf-view-top-image .ttm-pf-single-content-area {padding-top: 38px;}
-.ttm-pf-view-left-image .ttm-pf-single-detail-box {margin: 70px 35px;padding: 35px 25px;}
+.ttm-pf-view-left-image .ttm-pf-single-detail-box {margin: 10px 10px;padding: 35px 25px; border-radius: 10px;}
 .ttm-pf-view-left-image .ttm-pf-single-detail-box.style2 {margin: 50px 35px;padding: 40px 25px;}
 .ttm-portfolio-description h5 {font-size: 33px;line-height: 40px;}
 .ttm-pf-detailbox-list .ttm-pf-details-date {position: relative;display: block;padding: 18px 0 0 0px;font-size: 13px;}
@@ -2150,5 +2150,8 @@ article.post blockquote p{
 .element-row .section-title h2.title{ padding: 0; }
 .testimonial-section2{padding: 50px 0;}
 
+.text-purple{
+    color: #AF0558;
+}
 
 

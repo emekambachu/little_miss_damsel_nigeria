@@ -1,19 +1,21 @@
 
-<img src="{{ asset('images/kidstar_models_logo.png') }}" width="100">
+<img src="{{ asset('main/lmdn_logo_500.png') }}" width="100">
 
 <h3>Application Receipt</h3>
-<h3>Application Id: {{ $applicationid }}</h3>
+<h3>Application Id: {{ $application_id }}</h3>
 
 <p>
     <strong>Details of your application</strong><br><br>
 
-    <strong>Full Name:</strong> {{ $surname }} {{ $othernames }}<br>
+    <strong>Full Name:</strong> {{ $surname }} {{ $other_names }}<br>
 
     <strong>Age:</strong> {{ $age }}<br>
 
-    <strong>Nationality:</strong> {{ $nationality }}<br>
+    <strong>Nationality:</strong> {{ $country }}<br>
 
     <strong>State:</strong> {{ $state }}<br>
+
+    <strong>City:</strong> {{ $city }}<br>
 
     <strong>Vital State:</strong> {{ $vital_state }}<br>
 
@@ -29,7 +31,7 @@
 
     <strong>Hips:</strong> {{ $hips }}<br>
 
-    <strong>Parent Names:</strong> {{ $parent_surname }} {{ $parent_othernames }}<br>
+    <strong>Parent Names:</strong> {{ $parent_surname }} {{ $parent_other_names }}<br>
 
     <strong>Parent Mobile:</strong> {{ $parent_mobile }}<br>
 

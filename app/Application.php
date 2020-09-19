@@ -3,17 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Application extends Model{
 
+    use SoftDeletes;
+
     protected $fillable = [
-        'image_id',
+        'application_id',
+        'image',
         'surname',
-        'othernames',
+        'other_names',
         'age',
         'health_issues',
         'health_details',
-        'nationality',
+        'country',
         'state',
         'city',
         'address',
@@ -32,7 +36,7 @@ class Application extends Model{
         'question5',
 
         'parent_surname',
-        'parent_othernames',
+        'parent_other_names',
         'parent_mobile',
         'parent_email',
         'parent_address',
@@ -42,6 +46,8 @@ class Application extends Model{
 
         'paid'
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function image(){
         return $this->belongsTo('App\Image');

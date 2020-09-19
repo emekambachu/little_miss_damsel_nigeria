@@ -32,6 +32,25 @@ Route::get('contact', static function () {
 
 Route::post('submit-contact', 'WebsiteController@contactForm');
 
+// Contestant Controllers
+Route::resource('vote-contestants', 'ContestantController');
+Route::get('contestant/{slug}',
+    ['as'=>'view-contestant', 'uses'=>'ContestantController@view']);
+
+Route::get('contestants/search', ['uses' => 'ContestantController@search']);
+
+Route::post('contestant/bank-payment/{id}', ['uses' => 'ContestantController@bankForm']);
+
+// Paystack Payments
+Route::post('contestant/paystack/{id}', ['uses' => 'ContestantController@paystackForm']);
+Route::get('contestant/paystack-payment/{slug}', ['uses' => 'ContestantController@paystackPayment']);
+Route::get('contestants/voting-complete', 'ContestantController@votingComplete');
+
+Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+
+Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+
+
 Auth::routes();
 
 Route::get('/admin', 'AdminController@index')->name('admin');
@@ -39,13 +58,12 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 // Dashboard Page
 Route::get('admin/dashboard', 'AdminController@index')->name('admin-dashboard');
 
-// LMDN Admin Dashboard Page
-Route::get('lmdn-admin/dashboard', 'AdminController@LMDNdashboard')->name('lmdn-admin-dashboard');
-
-
-// Manage Applications
-// Application Resource Controller
+// Admin Application Controller
 Route::resource('admin/applications', 'ApplicationController');
+
+// Admin Contestant Controller
+Route::resource('admin/contestants', 'Admin\AdminContestantController');
+Route::get('admin/search-contestants', ['uses' => 'Admin\AdminContestantController@search']);
 
 // Fund User Form
 Route::post('/admin/applications/approve/{id}', ['uses' => 'ApplicationController@approve']);

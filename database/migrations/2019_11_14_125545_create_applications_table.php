@@ -13,19 +13,18 @@ class CreateApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('applications', static function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('applicationid')->nullable();
-            $table->integer('image_id')->index()->unsigned()->nullable();
-            $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
+            $table->string('application_id')->nullable();
+            $table->string('image')->nullable();
             $table->string('surname');
-            $table->string('othernames');
+            $table->string('other_names');
             $table->integer('age');
             $table->boolean('health_issues')->default('0');
             $table->string('health_details')->nullable();
-            $table->string('nationality');
+            $table->string('country');
             $table->string('state');
-            $table->string('city');
+            $table->string('city')->nullable();
             $table->string('address');
             $table->string('vital_state');
             $table->string('school_name');
@@ -42,7 +41,7 @@ class CreateApplicationsTable extends Migration
             $table->string('question5');
 
             $table->string('parent_surname');
-            $table->string('parent_othernames');
+            $table->string('parent_other_names');
             $table->string('parent_mobile');
             $table->string('parent_email');
             $table->string('parent_address')->nullable();
@@ -52,6 +51,7 @@ class CreateApplicationsTable extends Migration
             $table->boolean('paid')->default('0');
 
             $table->timestamps();
+            $table->softDeletes(); // Deleted at
         });
     }
 

@@ -3,7 +3,7 @@
 
 <h3>Registration Complete</h3>
 
-<h3>Hello {{ $surname }} {{ $othernames }},</h3>
+<h3>Hello {{ $surname }} {{ $other_names }},</h3>
 
 <p>
     Thank you for completing your application process, your application process would continue as soon as we confirm your payment.<br>
@@ -16,7 +16,7 @@
 
     <strong>Health Details:</strong> {{ $health_details  }}<br>
 
-    <strong>Nationality:</strong> {{ $nationality }}<br>
+    <strong>Nationality:</strong> {{ $country }}<br>
 
     <strong>State:</strong> {{ $state }}<br>
 
@@ -48,7 +48,7 @@
 
     <strong>5. Why did you choose to be part of Kid Star Models Modeling Agency:</strong><br> {{ $question5 }}<br>
 
-    <strong>Parent Names:</strong> {{ $parent_surname }} {{ $parent_othernames }}<br>
+    <strong>Parent Names:</strong> {{ $parent_surname }} {{ $parent_other_names }}<br>
 
     <strong>Parent Mobile:</strong> {{ $parent_mobile }}<br>
 

@@ -121,6 +121,7 @@
                                     <nav id="menu" class="menu">
                                         <ul class="dropdown">
                                             <li><a href="{{ url('/') }}">Home</a></li>
+                                            <li><a href="{{ route('vote-contestants.index') }}">Contestants</a></li>
                                             <li><a href="{{ url('fashion-exhibition') }}">Fashion Exhibition</a></li>
 {{--                                            <li><a href="{{ url('about') }}">About us</a></li>--}}
                                             <li><a href="{{ url('registration') }}">Registration</a></li>
@@ -243,6 +244,8 @@
 <script src="{{ asset('main/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
 <script src="{{ asset('main/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
 <script src="{{ asset('main/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+
+@yield('bottom-scripts')
 
 <!-- Javascript end-->
 

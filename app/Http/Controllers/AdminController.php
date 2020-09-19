@@ -32,14 +32,4 @@ class AdminController extends Controller
         return view('admin.index', compact('countAllApplications', 'countPaidApplications', 'applications'));
 
     }
-
-    public function LMDNdashboard(){
-
-        $applications = LittleMissDamsel::paginate(15);
-        $countAllApplications = LittleMissDamsel::all()->count();
-        $countPaidApplications = LittleMissDamsel::where('paid', True)->count();
-
-        return view('admin.index', compact('countAllApplications', 'countPaidApplications', 'applications'));
-
-    }
 }

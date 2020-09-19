@@ -189,6 +189,85 @@
             </div>
         </section>
 
+        <section class="ttm-row service-section style2 bg-layer clearfix bg-layer-equal-height break-991-colum" style="background: url({{ asset('main/bg/bg2.png') }}) fixed no-repeat; background-size: cover;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-5">
+                        <!-- col-bg-img-three -->
+                        <div class="col-bg-img-three ttm-col-bgimage-yes ttm-bg ttm-left-span res-991-mt-0 mt_60">
+                            <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
+                            <div class="layer-content">
+                            </div>
+                        </div><!-- col-bg-img-three end-->
+                        <img src="{{ asset('main/home/vote.jpeg') }}" class="ttm-equal-height-image" alt="bg-image">
+                    </div>
+                    <div class="col-lg-7 col-md-12">
+                        <!-- about-content -->
+                        <div class="about-content ttm-bg ttm-col-bgcolor-yes ttm-right-span ttm-bgcolor-skincolor padding-15">
+                            <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
+                            <div class="layer-content">
+                                <!-- section title -->
+                                <div class="section-title with-desc clearfix">
+                                    <div class="title-header">
+                                        <h4>Little Miss Damsel Competition</h4>
+                                        <h2 class="title">How to Vote</h2>
+                                    </div>
+                                    <p>NOTE: Each vote costs ₦50 Naira, minimum vote is 4500<br><br>
+                                        Step 1: Click on the Contestant you wish to vote for.<br><br>
+                                        Step 2: Pick a payment method, Paystack or Bank payment/Transfer.<br><br>
+                                        Step 3: If you choose paystack, click on the paystack icon and you will be directed to the payment page. Fill in your details and the amount of money you would like to spend on voting. Each vote cost 50 naira and the minimum votes is 4500.<br><br>
+                                        Step 4: If you choose to pay via bank payment or transfer, ignore the paystack. First pay your equivalent amount to our account number given on the vote page and fill in your payment details in the form and vote, your vote will be added once payment has been approved..</p>
+                                </div><!-- section title end -->
+                                <div class="separator clearfix">
+                                    <div class="sep-line mb-50"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="featured-box style2 left-icon icon-align-top">
+                                            <div class="featured-icon">
+                                                <div class="ttm-icon ttm-icon_element-size-sm ttm-icon_element-color-white">
+                                                    <i class="fa fa-bank"></i>
+                                                </div>
+                                            </div>
+                                            <div class="featured-content">
+                                                <div class="featured-title">
+                                                    <h5>Naira Account</h5>
+                                                </div>
+                                                <div class="featured-desc">
+                                                    <p>Name Little miss damsel Nigeria<br>
+                                                        Number 0432091606<br>
+                                                        Bank GTB</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="featured-box style2 left-icon icon-align-top">
+                                            <div class="featured-icon">
+                                                <div class="ttm-icon ttm-icon_element-size-sm ttm-icon_element-color-white">
+                                                    <i class="fa fa-bank"></i>
+                                                </div>
+                                            </div>
+                                            <div class="featured-content">
+                                                <div class="featured-title">
+                                                    <h5>Dollar Account</h5>
+                                                </div>
+                                                <div class="featured-desc">
+                                                    <p>Name Kid Star Models<br>
+                                                        Number 0602818794<br>
+                                                        Bank GTB</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- about-content end-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="ttm-row bg-img1 ttm-bgcolor-black service-section ttm-bg ttm-bgimage-yes clearfix">
             <div class="ttm-row-wrapper-bg-layer ttm-bg-layer"></div>
             <div class="container">
