@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contestant;
 use App\Http\Controllers\Controller;
+use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -119,6 +120,40 @@ class AdminContestantController extends Controller
         return view('admin.contestants.search-results',
             compact( 'countResults', 'contestants', 'emptyResult'));
     }
+
+    public function payments()
+    {
+        $payments = Payment::orderBy('created_at', 'desc')->paginate(15);
+        return view('admin.contestants.payments', compact('payments'));
+    }
+
+    public function approve($id){
+
+        $pay = Payment::find($id);
+        $contestant = Contestant::where('id', $pay->contestant_id)->get()->first();
+
+        if($pay->status){
+            // deduct votes from contestant
+            $contestant->votes -= $pay->votes;
+
+            $pay->status = 0;
+            Session::flash('warning', $pay->accname.' payment has been un-approved');
+
+        }else{
+            // add votes to contestant
+            $contestant->votes += $pay->votes;
+
+            $pay->status = 1;
+            Session::flash('success', $pay->accname.' has been approved');
+        }
+
+        // save both contestant and payment
+        $contestant->save();
+        $pay->save();
+
+        return redirect()->back();
+    }
+
 
     /**
      * Display the specified resource.

@@ -20,7 +20,7 @@
                         <div class="container">
                             <span><a title="Homepage" href="{{ url('/') }}"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></span>
                             <span class="ttm-bread-sep ttm-textcolor-white"> &nbsp; ⁄ &nbsp;</span>
-                            <span><a title="Contestants" href="{{ url('contestants') }}">
+                            <span><a title="Contestants" href="{{ route('vote-contestants.index') }}">
                                     <i class="fa fa-star"></i>&nbsp;&nbsp;Contestants</a></span>
                             <span class="ttm-bread-sep ttm-textcolor-white"> &nbsp; ⁄ &nbsp;</span>
                             <span><a title="Contestants" href="">
@@ -45,7 +45,7 @@
 
                                             @include('includes.alerts')
 
-                                            <h4>Payment Details</h4>
+                                            <h4 class="text-purple">Payment Details</h4>
                                             <img src="{{ asset('main/paystack_logo.png') }}" width="150" class="mb-3"/>
 
                                             <p><strong>Name:</strong>

@@ -20,7 +20,7 @@
                         <div class="container">
                             <span><a title="Homepage" href="{{ url('/') }}"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a></span>
                             <span class="ttm-bread-sep ttm-textcolor-white"> &nbsp; ⁄ &nbsp;</span>
-                            <span><a title="Contestants" href="{{ url('contestants') }}">
+                            <span><a title="Contestants" href="{{ route('vote-contestants.index') }}">
                                     <i class="fa fa-star"></i>&nbsp;&nbsp;Contestants</a></span>
                             <span class="ttm-bread-sep ttm-textcolor-white"> &nbsp; ⁄ &nbsp;</span>
                             <span><a title="Contestants" href="">
@@ -37,6 +37,9 @@
                 <div class="row">
 
                     <div class="col-md-12">
+
+                        @include('includes.alerts')
+
                         <div class="ttm-pf-single-content-wrapper-innerbox ttm-pf-view-left-image">
                             <div class="row">
                                 <div class="col-lg-5">
@@ -48,9 +51,7 @@
                                     <div class="ttm-pf-single-detail-box text-left">
                                         <div class="ttm-pf-detailbox">
 
-                                            @include('includes.alerts')
-
-                                            <h4>Payment Methods: (50 Naira per Vote)</h4>
+                                            <h4 class="text-purple">Payment Methods: (50 Naira per Vote)</h4>
                                             <p><strong>1) Fill in your details to Pay with Paystack</strong></p>
                                             <img src="{{ asset('main/paystack_logo.png') }}" width="150"/>
 
@@ -100,7 +101,7 @@
                                                     <i class="ti ti-user"></i>
                                                     <span class="ttm-form-control">
                                                         <input class="text-input" name="accname" type="text"
-                                                               value="" placeholder="Bank Full Name:*"
+                                                               value="" placeholder="Full Name (from bank):*"
                                                                required="required"></span>
                                                 </label>
 

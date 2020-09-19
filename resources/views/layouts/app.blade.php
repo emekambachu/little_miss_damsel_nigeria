@@ -53,8 +53,15 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contestants.index') }}" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a class="nav-link" href="{{ route('contestants.index') }}" role="button"
+                                   aria-haspopup="true" aria-expanded="false" v-pre>
                                     Contestants
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('admin/payments') }}" role="button"
+                                   aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Payments
                                 </a>
                             </li>
                             <li class="nav-item dropdown">

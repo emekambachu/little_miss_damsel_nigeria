@@ -39,6 +39,7 @@ Route::get('contestant/{slug}',
 
 Route::get('contestants/search', ['uses' => 'ContestantController@search']);
 
+// Bank Payments
 Route::post('contestant/bank-payment/{id}', ['uses' => 'ContestantController@bankForm']);
 
 // Paystack Payments
@@ -47,7 +48,6 @@ Route::get('contestant/paystack-payment/{slug}', ['uses' => 'ContestantControlle
 Route::get('contestants/voting-complete', 'ContestantController@votingComplete');
 
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
-
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
 
@@ -64,6 +64,8 @@ Route::resource('admin/applications', 'ApplicationController');
 // Admin Contestant Controller
 Route::resource('admin/contestants', 'Admin\AdminContestantController');
 Route::get('admin/search-contestants', ['uses' => 'Admin\AdminContestantController@search']);
+Route::get('admin/payments', 'Admin\AdminContestantController@payments');
+Route::post('admin/payments/approve/{id}', ['uses' => 'Admin\AdminContestantController@approve']);
 
 // Fund User Form
 Route::post('/admin/applications/approve/{id}', ['uses' => 'ApplicationController@approve']);

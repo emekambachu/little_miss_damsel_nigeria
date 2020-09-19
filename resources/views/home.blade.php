@@ -201,6 +201,7 @@
                         </div><!-- col-bg-img-three end-->
                         <img src="{{ asset('main/home/vote.jpeg') }}" class="ttm-equal-height-image" alt="bg-image">
                     </div>
+
                     <div class="col-lg-7 col-md-12">
                         <!-- about-content -->
                         <div class="about-content ttm-bg ttm-col-bgcolor-yes ttm-right-span ttm-bgcolor-skincolor padding-15">
@@ -261,9 +262,23 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <a href="{{ route('vote-contestants.index') }}">
+                                        <button style="background-color: #ffffff; color: #af0558;"
+                                            class="ttm-btn ttm-btn-size-sm ttm-btn-shape-round ttm-btn-style-fill mt-10">
+                                            Start Voting
+                                        </button>
+                                    </a>
+
+                                </div>
+
+
+
                             </div>
                         </div><!-- about-content end-->
                     </div>
+
                 </div>
             </div>
         </section>

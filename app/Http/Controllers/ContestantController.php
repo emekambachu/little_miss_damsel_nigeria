@@ -64,12 +64,11 @@ class ContestantController extends Controller
 
         $input['amount'] = $input['votes'] * 50;
         $input['contestant_id'] = $con->id;
-        $input['payment_method'] = 'Bank-Payment';
-        $input['status'] = 1;
+        $input['payment_method'] = 'bank-payment';
 
         Payment::create($input);
 
-        Session::flash('success', 'Thank you for voting for '.$con->name.' with '.$input['amount'].' Your vote will ba approved as soon as your payment is confirmed');
+        Session::flash('success', 'Thank you for voting for '.$con->name.' with '.$input['amount'].'Naira, Your vote will be approved as soon as your payment is confirmed');
 
         return redirect()->back();
     }
