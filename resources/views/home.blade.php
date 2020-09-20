@@ -18,8 +18,8 @@
 
                     <div class="tp-caption tp-shapewrapper ttm-bgcolor-skincolor tp-resizeme" id="slide-1-layer-1" data-x="['left','left','left','left']" data-hoffset="['50','50','40','-50']" data-y="['top','top','top','top']" data-voffset="['240','240','70','100']"
 
-                         data-fontsize="['15','15','8','8']"
-                         data-lineheight="['26','26','20','20']"
+                         data-fontsize="['10','10','6','6']"
+                         data-lineheight="['20','20','15','15']"
                          data-width="10"
                          data-height="200"
                          data-whitespace="nowrap"
@@ -36,9 +36,9 @@
 
                     <div style="background-color: rgba(255,255,255,0.78); border-radius: 10px;" class="tp-caption tp-resizeme" id="slide-1-layer-2" data-x="['left','left','left','center']" data-hoffset="['90','90','71','20']" data-y="['top','top','top','middle']" data-voffset="['234','234','64','-100']"
 
-                         data-fontsize="['64','64','64','53']"
-                         data-lineheight="['70','70','70','60']"
-                         data-fontweight="[600,600,600,600]"
+                         data-fontsize="['50','50','50','40']"
+                         data-lineheight="['55','55','55','55']"
+                         data-fontweight="[400,400,400,400]"
                          data-color="['#b8095e','#b8095e','#b8095e','#b8095e']"
                          data-width="none"
                          data-height="none"
@@ -55,9 +55,9 @@
 
                     <div style="background-color: rgba(255,255,255,0.78); border-radius: 10px;" class="tp-caption tp-resizeme" id="slide-1-layer-3" data-x="['left','left','left','center']" data-hoffset="['89','89','69','1']" data-y="['top','top','top','middle']" data-voffset="['302','302','130','-38']"
 
-                         data-fontsize="['65','65','65','50']"
-                         data-lineheight="['70','70','70','60']"
-                         data-fontweight="[600,600,600,600]"
+                         data-fontsize="['45','45','45','40']"
+                         data-lineheight="['55','55','55','45']"
+                         data-fontweight="[400,400,400,400]"
                          data-color="['#f92a8f','#f92a8f','#f92a8f','#f92a8f']"
                          data-width="none"
                          data-height="none"
@@ -72,7 +72,7 @@
                          data-paddingleft="[0,0,0,0]"
                     ><strong class="ttm-textcolor-skincolor">Nigeria </strong></div>
 
-                    <a class="tp-caption tp-resizeme highlight-black-button" href="{{ url('fashion-expedition') }}" target="_self" id="slide-1-layer-6" data-x="['left','left','left','center']" data-hoffset="['50','50','40','0']" data-y="['middle','middle','middle','middle']" data-voffset="['187','220','103','95']"
+                    <a class="tp-caption tp-resizeme highlight-black-button" href="{{ url('fashion-exhibition') }}" target="_self" id="slide-1-layer-6" data-x="['left','left','left','center']" data-hoffset="['50','50','40','0']" data-y="['middle','middle','middle','middle']" data-voffset="['187','220','103','95']"
 
                        data-width="none"
                        data-height="none"
@@ -109,8 +109,8 @@
 
                     <div style="background-color: rgba(255,255,255,0.78); border-radius: 10px;" class="tp-caption tp-resizeme head-font" id="slide-2-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-70','-135','-128','-76']"
 
-                         data-fontsize="['60','60','60','60']"
-                         data-lineheight="['100','100','100','70']"
+                         data-fontsize="['45','45','45','45']"
+                         data-lineheight="['80','80','80','50']"
                          data-fontweight="['400','400','400','400']"
                          data-color="['#b8095e','#b8095e','#b8095e','#b8095e']"
                          data-width="none"
@@ -170,8 +170,9 @@
                                 <div class="pt-40 res-991-pt-30">
                                     <div class="section-title">
                                         <h2 class="title" style="color: #af0558;">About Little Miss Damsel Nigeria</h2>
-                                        <p class="mb-25"><strong>"Little Miss Damsel Nigeria", is a beauty, intellectual and didactic Kids pageant that campaigns against child molestation, rape and child labour. It also aims at promoting female child education, encouraging women in the areas of business and career perhaps promoting gender equality worldwide.<br>
-                                                We hereby, honourably bring to your notice the LMDN 2019. The third edition which holds on 21st April 2019 in Port Harcourt Rivers State Nigeria.
+                                        <p class="mb-25"><strong>Little Miss Damsel Nigeria", is a beauty, intellectual and didactic Kids pageant that campaigns against child molestation, rape and child labour. It also aims at promoting female child education, encouraging children in the areas of career perhaps promoting gender equality worldwide. Our vision is one where we are building a system with a positive culture that is fair and that our most beautiful, talented, educated and confident child Barbadian children will want to be a part of.<br>
+
+                                                For us, it is more than just about a show to crown a beautiful and intelligent child. This is more about an opportunity to work within our community to create opportunities, for other children who encounter the franchise to truly live the mantra of “Confidently Beautiful”, as well as to expose the wider beauty, fashion and artisan industries to a global audience.
                                             </strong></p>
                                     </div>
                                     <div class="mt_19 mb-30 pr-35">
