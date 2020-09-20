@@ -99,9 +99,9 @@ class AdminContestantController extends Controller
 
         $contestants = Contestant::where(static function($query) use($searchValues){
 
-                foreach ($searchValues as $value) {
-                    $query->where('contestants.name', 'LIKE', '%' . $value . '%');
-                }
+            foreach ($searchValues as $value) {
+                $query->where('contestants.name', 'LIKE', '%' . $value . '%');
+            }
 
             })->paginate(9);
 
@@ -125,6 +125,44 @@ class AdminContestantController extends Controller
     {
         $payments = Payment::orderBy('created_at', 'desc')->paginate(15);
         return view('admin.contestants.payments', compact('payments'));
+    }
+
+    public function searchPayments(Request $request){
+
+        $input = $request->input('name');
+
+        // Using Like and foreach search
+        $searchValues = explode(' ', $input);
+
+        $payments = Payment::join('contestants', 'contestants.id', '=', 'payments.contestant_id')
+            ->select('contestants.*' , 'payments.*')
+            ->where(static function($query) use($searchValues){
+                foreach ($searchValues as $value) {
+                    $query->where('payments.accname', 'LIKE', '%' . $value . '%');
+                }
+
+            })->orWhere(static function ($query) use($searchValues){
+                foreach($searchValues as $value) {
+                    $query->orWhere('contestants.name', 'LIKE', '%' . $value . '%');
+                }
+
+            })->paginate(15);
+
+        // get total results
+        if($payments->total() > 0){
+            $countResults = $payments->total();
+        }else{
+            $countResults = 0;
+            $emptyResult = $request->input('name');
+        }
+
+        if($payments->first()){
+            return view('admin.contestants.payment-search-results',
+                compact( 'countResults', 'payments'));
+        }
+
+        return view('admin.contestants.payment-search-results',
+            compact( 'countResults', 'payments', 'emptyResult'));
     }
 
     public function approve($id){

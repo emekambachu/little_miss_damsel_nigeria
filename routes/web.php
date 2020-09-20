@@ -66,6 +66,7 @@ Route::resource('admin/contestants', 'Admin\AdminContestantController');
 Route::get('admin/search-contestants', ['uses' => 'Admin\AdminContestantController@search']);
 Route::get('admin/payments', 'Admin\AdminContestantController@payments');
 Route::post('admin/payments/approve/{id}', ['uses' => 'Admin\AdminContestantController@approve']);
+Route::get('admin/search-payments', 'Admin\AdminContestantController@searchPayments');
 
 // Fund User Form
 Route::post('/admin/applications/approve/{id}', ['uses' => 'ApplicationController@approve']);

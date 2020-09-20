@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    All Payments
+    Payment Results
 @stop
 
 @section('content')
@@ -62,6 +62,15 @@
                 </form>
             </div>
 
+            @if( $countResults === 0 )
+                <div class="alert alert-danger alert-dismissable" style="width: 60%; margin: 10px auto;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <ul class="text-center" style="list-style: none; margin: 0 auto;">
+                        No Results Found <strong>{{ !empty($emptyResult) ? $emptyResult : '' }}</strong>!!!
+                    </ul>
+                </div>
+            @endif
+
         </div>
 
         <div class="row justify-content-center mt-5">
@@ -97,18 +106,18 @@
                             <td>
                                 <!--Verification modal Button-->
                                 @if($pay->status)
-                                <button type="button" class="btn btn-danger btn-sm"
-                                        data-toggle="modal" data-target="#approve{{ $pay->id }}">
-                                    Un-approve
-                                </button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                            data-toggle="modal" data-target="#approve{{ $pay->id }}">
+                                        Un-approve
+                                    </button>
                                 @else
-                                <button type="button" class="btn btn-success btn-sm"
-                                        data-toggle="modal" data-target="#approve{{ $pay->id }}">
-                                    Approve
-                                </button>
-                                @endif
+                                    <button type="button" class="btn btn-success btn-sm"
+                                            data-toggle="modal" data-target="#approve{{ $pay->id }}">
+                                        Approve
+                                    </button>
+                            @endif
 
-                                <!--Verification modal Popup-->
+                            <!--Verification modal Popup-->
                                 <div class="modal fade text-left"
                                      id="approve{{ $pay->id }}" tabindex="-1"
                                      role="dialog" aria-labelledby="myModalLabel1"
