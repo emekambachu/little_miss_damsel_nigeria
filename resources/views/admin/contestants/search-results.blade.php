@@ -74,10 +74,10 @@
 
                     @foreach($contestants as $index => $con)
                         <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
+                            <th scope="row">{{ $index + $contestants->firstItem() }}</th>
                             <td>{{ $con->name }}</td>
                             <td><img src="{{ asset('photos/'.$con->image) }}" width="90"/> </td>
-                            <td>{{ $con->votes->count() }}</td>
+                            <td>{{ $con->votes }}</td>
                             <td>
                                 <a href="{{ route('view-contestant', $con->slug) }}">
                                     <button class="btn btn-warning btn-sm">View</button>
