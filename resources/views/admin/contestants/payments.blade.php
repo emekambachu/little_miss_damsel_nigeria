@@ -42,11 +42,6 @@
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-3">
-                <a href="{{ route('contestants.create') }}">
-                    <button class="btn btn-primary btn-round mb-3">Add New Contestant</button>
-                </a>
-            </div>
 
             <div class="col-md-9 text-center">
                 <form method="get" action="{{ url('admin/search-payments') }}">
