@@ -75,8 +75,8 @@
                                                 <label class="col-md-4">
                                                     <i class="ti ti-star"></i>
                                                     <span class="ttm-form-control">
-                                                        <input class="text-input" name="votes" type="number"
-                                                               placeholder="Votes (50 Naira per vote):*"
+                                                        <input class="text-input" minlength="4" name="votes" type="number"
+                                                               placeholder="Votes (Minimum 4):*"
                                                                required="required"></span>
                                                 </label>
                                                 <input name="submit" type="submit" value="Submit" class="ttm-btn ttm-btn-size-sm ttm-btn-shape-round ttm-btn-style-fill ttm-btn-color-skincolor mb-15" id="submit" title="Submit">
@@ -132,8 +132,8 @@
                                                 <label class="col-md-4">
                                                     <i class="ti ti-star"></i>
                                                     <span class="ttm-form-control">
-                                                        <input class="text-input" name="votes" type="number"
-                                                               placeholder="Votes (50 Naira per vote):*"
+                                                        <input class="text-input" minlength="4" name="votes" type="number"
+                                                               placeholder="Votes (Minimum 4):*"
                                                                required="required"></span>
                                                 </label>
 
