@@ -96,10 +96,17 @@
                             <td>{{ $pay->status ? 'Paid' : 'Pending' }}</td>
                             <td>
                                 <!--Verification modal Button-->
-                                <button type="button" class="btn btn-info btn-sm"
+                                @if($pay->status)
+                                <button type="button" class="btn btn-danger btn-sm"
                                         data-toggle="modal" data-target="#approve{{ $pay->id }}">
-                                    @if($pay->status)Un-approve @else Approve @endif
+                                    Un-approve
                                 </button>
+                                @else
+                                <button type="button" class="btn btn-success btn-sm"
+                                        data-toggle="modal" data-target="#approve{{ $pay->id }}">
+                                    Approve
+                                </button>
+                                @endif
 
                                 <!--Verification modal Popup-->
                                 <div class="modal fade text-left"
