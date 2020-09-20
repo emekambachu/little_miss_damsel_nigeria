@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('title')
-    Contestants
-    @endsection
+Contestants
+@endsection
 
     @section('contents')
     </header>
@@ -57,11 +57,13 @@
                                 <img class="img-fluid" src="{{ asset('photos/'.$con->image) }}" alt="img">
                             </div>
                             <div class="featured-bottom-content text-left position-relative">
-{{--                                <div class="ttm-box-post-date shape-rounded ttm-bgcolor-skincolor">--}}
-{{--                                        <span class="ttm-entry-date">--}}
-{{--                                            <time class="entry-date" datetime="2019-01-16T07:07:55+00:00">24<span class="entry-month entry-year">sep</span></time>--}}
-{{--                                        </span>--}}
-{{--                                </div>--}}
+                                <div class="ttm-box-post-date shape-rounded" style="background-color: #13071F;">
+                                    <span class="ttm-entry-date">
+                                        <time style="font-size: 17px;" class="entry-date">{{ $con->votes }}<br>
+                                            <span style="font-size: 10px;">Vote(s)</span>
+                                        </time>
+                                    </span>
+                                </div>
                                 <div class="featured-title">
                                     <h5>
                                         <a style="color: #AF0558;" href="{{ route('view-contestant', $con->slug) }}">{{ $con->name }}</a></h5>
