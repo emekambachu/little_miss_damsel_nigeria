@@ -53,6 +53,10 @@
 
                     <label>Image</label>
                     <input class="form-control mb-3" name="image" type="file">
+
+                    <label>Votes</label>
+                    <input class="form-control mb-3" name="votes" type="text" value="{{ $contestant->votes }}">
+
                     <img width="100" src="{{ asset('photos/'.$contestant->image) }}"/>
 
                     <button type="submit" class="form-control btn btn-success btn-round">Update</button>
