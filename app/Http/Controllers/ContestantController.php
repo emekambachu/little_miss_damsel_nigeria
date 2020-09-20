@@ -73,6 +73,37 @@ class ContestantController extends Controller
         return redirect()->back();
     }
 
+    public function search(Request $request){
+
+        $input = $request->input('name');
+
+        // Using Like and foreach search
+        $searchValues = explode(' ', $input);
+
+        $contestants = Contestant::where(static function($query) use($searchValues){
+
+            foreach ($searchValues as $value) {
+                $query->where('contestants.name', 'LIKE', '%' . $value . '%');
+            }
+
+        })->paginate(15);
+
+        // get total results
+        if($contestants->total() > 0){
+            $countResults = $contestants->total();
+        }else {
+            $countResults = 0;
+            $emptyResult = $request->input('name');
+        }
+
+        if($contestants->first()){
+            return view('contestants.search-results',
+                compact( 'countResults', 'contestants'));
+        }
+        return view('contestants.search-results',
+            compact( 'countResults', 'contestants', 'emptyResult'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

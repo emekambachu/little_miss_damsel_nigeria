@@ -29,6 +29,24 @@
 
         <section class="ttm-row upcoming-event-section">
             <div class="container">
+
+                <div class="row">
+                    <form class="contactform wrap-form clearfix text-center" method="get"
+                          action="{{ url('contestants/search') }}" novalidate="novalidate">
+                        @csrf
+                        <label class="col-md-8">
+                            <i class="ti ti-user"></i>
+                            <span class="ttm-form-control">
+                                <input class="text-input" name="name" type="text" value=""
+                                       placeholder="Search Contestants" required="required"></span>
+                        </label>
+
+                        <input name="submit" type="submit" value="Search"
+                               class="ttm-btn ttm-btn-size-sm ttm-btn-shape-round ttm-btn-style-fill ttm-btn-color-skincolor mt-20 mb-20"
+                               id="submit" title="Search">
+                    </form>
+                </div>
+
                 <div class="row">
 
                     @foreach($contestants as $index => $con)

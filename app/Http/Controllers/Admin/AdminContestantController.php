@@ -190,7 +190,7 @@ class AdminContestantController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|min:5|unique:contestants,name',
+            'name' => 'required|min:5|unique:contestants,name,'.$id,
             'image' => 'nullable|mimes:jpg,jpeg,png|image',
         ]);
 
