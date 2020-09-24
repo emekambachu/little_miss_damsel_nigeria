@@ -135,7 +135,7 @@
                                                     <i class="ti ti-star"></i>
                                                     <span class="ttm-form-control">
                                                         <input class="text-input" minlength="4" name="votes" type="number"
-                                                               placeholder="Votes (Minimum 4):*"
+                                                               placeholder="Vote as much as you can*"
                                                                required="required"></span>
                                                 </label>
 
