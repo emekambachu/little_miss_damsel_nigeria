@@ -91,7 +91,9 @@
                                                 <strong>Pay to the account details below</strong><br>
                                                 <strong>Account Name:</strong> Little Miss Damsel Nigeria<br>
                                                 <strong>Account number:</strong> 0432091606<br>
-                                                <strong>Bank:</strong> GT Bank
+                                                <strong>Bank:</strong> GT Bank<br><br>
+
+                                                <strong>Voting reflects after 4 hours</strong>
                                             </p>
 
                                             <form class="row contactform wrap-form clearfix" method="post"
