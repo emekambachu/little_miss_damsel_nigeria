@@ -107,7 +107,10 @@
                          data-paddingleft="[0,0,0,0]"
                     ></div>
 
-                    <div style="background-color: rgba(255,255,255,0.78); border-radius: 10px;" class="tp-caption tp-resizeme head-font" id="slide-2-layer-2" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-70','-135','-128','-76']"
+                    <div style="background-color: rgba(255,255,255,0.78); border-radius: 10px;"
+                         class="tp-caption tp-resizeme head-font" id="slide-2-layer-2"
+                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['-70','-135','-128','-76']"
 
                          data-fontsize="['45','45','45','45']"
                          data-lineheight="['80','80','80','50']"
@@ -211,6 +214,10 @@
                                 <!-- section title -->
                                 <div class="section-title with-desc clearfix">
                                     <div class="title-header">
+                                        <div style="font-size: 40px;">
+                                            <h4 style="margin-bottom: 5px;" class="title">Voting Closes in:</h4>
+                                            <p style="" id="demo"></p>
+                                        </div>
                                         <h4>Little Miss Damsel Competition</h4>
                                         <h2 class="title">How to Vote</h2>
                                     </div>
