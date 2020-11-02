@@ -214,10 +214,10 @@
                                 <!-- section title -->
                                 <div class="section-title with-desc clearfix">
                                     <div class="title-header">
-                                        <div style="font-size: 40px;">
-                                            <h4 style="margin-bottom: 5px;" class="title">Voting Closes in:</h4>
-                                            <p style="" id="demo"></p>
-                                        </div>
+{{--                                        <div style="font-size: 40px;">--}}
+{{--                                            <h4 style="margin-bottom: 5px;" class="title">Voting Closes in:</h4>--}}
+{{--                                            <p style="" id="demo"></p>--}}
+{{--                                        </div>--}}
                                         <h4>Little Miss Damsel Competition</h4>
                                         <h2 class="title">How to Vote</h2>
                                     </div>
