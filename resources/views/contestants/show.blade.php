@@ -51,10 +51,10 @@
                                     <div class="ttm-pf-single-detail-box text-left">
                                         <div class="ttm-pf-detailbox">
 
-                                            <div style="font-size: 40px;">
-                                                <h4 style="margin-bottom: 5px;" class="title">Voting Closes in:</h4>
-                                                <p class="text-purple" id="demo"></p>
-                                            </div>
+{{--                                            <div style="font-size: 40px;">--}}
+{{--                                                <h4 style="margin-bottom: 5px;" class="title">Voting Closes in:</h4>--}}
+{{--                                                <p class="text-purple" id="demo"></p>--}}
+{{--                                            </div>--}}
 
                                             <h4 class="text-purple">Payment Methods: (50 Naira per Vote)</h4>
                                             <p><strong>1) Fill in your details to Pay with Paystack</strong></p>
