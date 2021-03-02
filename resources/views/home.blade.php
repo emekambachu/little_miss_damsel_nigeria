@@ -164,7 +164,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-6">
                         <div class="ttm_single_image_wrapper mt_20 res-991-mt-0">
-                            <img src="{{ asset('main/lmdn_home1.jpg') }}" alt="image" class="img-fluid">
+                            <img src="{{ asset('main/home2.jpg') }}" alt="image" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6">
@@ -322,8 +322,8 @@
                             </div>
                             <div class="featured-content">
                                 <div class="featured-title">
-                                    <h3><a href="#"> LMDN Crowned Winner</a></h3>
-                                    <h5><a href="#"> </a></h5>
+                                    <h3><a href="#"> LMDN Crowned Queen (2020/2021) </a></h3>
+                                    <h5><a href="#"> Queen Biobele LongJohn </a></h5>
                                 </div>
                             </div>
                         </div>
