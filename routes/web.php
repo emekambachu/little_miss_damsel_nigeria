@@ -70,6 +70,7 @@ Route::post('admin/payments/approve/{id}', ['uses' => 'Admin\AdminContestantCont
 Route::get('admin/search-payments', 'Admin\AdminContestantController@searchPayments');
 
 Route::get('admin/delete-contestants', 'Admin\AdminContestantController@deleteContestants');
+Route::get('admin/delete-payments', 'Admin\AdminContestantController@deletePayments');
 
 // Fund User Form
 Route::post('/admin/applications/approve/{id}', ['uses' => 'ApplicationController@approve']);

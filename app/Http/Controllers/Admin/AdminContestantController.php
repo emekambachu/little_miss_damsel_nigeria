@@ -322,4 +322,13 @@ class AdminContestantController extends Controller
         return "Contestants Deleted";
     }
 
+    public function deletePayments(){
+
+        $payments = Payment::all();
+
+        $payments->delete();
+
+        return "Contestants Deleted";
+    }
+
 }
