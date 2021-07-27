@@ -326,9 +326,11 @@ class AdminContestantController extends Controller
 
         $payments = Payment::all();
 
-        $payments->delete();
+        foreach($payments as $payment){
+            $payment->delete();
+        }
 
-        return "Contestants Deleted";
+        return "Payments Deleted";
     }
 
 }
