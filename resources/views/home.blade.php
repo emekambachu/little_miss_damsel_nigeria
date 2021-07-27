@@ -231,7 +231,7 @@
                                         <h4>Little Miss Damsel Competition</h4>
                                         <h2 class="title">How to Vote</h2>
                                     </div>
-                                    <p>NOTE: Each vote costs ₦50 Naira, minimum vote is 4500<br><br>
+                                    <p>NOTE: Each vote costs ₦50 Naira, minimum vote is 3000 to qualify<br><br>
                                         Step 1: Click on the Contestant you wish to vote for.<br><br>
                                         Step 2: Pick a payment method, Paystack or Bank payment/Transfer.<br><br>
                                         Step 3: If you choose paystack, click on the paystack icon and you will be directed to the payment page. Fill in your details and the amount of money you would like to spend on voting. Each vote cost 50 naira and the minimum votes is 3000.<br><br>
@@ -539,7 +539,7 @@
                                     </div>
                                 </div>
                                 <div class="featured-title">
-                                    <h5 class="ttm-textcolor-white">Become a Little Miss Damsel</h5>
+                                    <h5 class="ttm-textcolor-white">Become the next little miss damsel Nigeria</h5>
                                 </div>
                             </div>
                         </div>

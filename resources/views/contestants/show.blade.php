@@ -104,7 +104,7 @@
                                             <form class="row contactform wrap-form clearfix" method="post"
                                                   action="{{ url('contestant/bank-payment/'.$con->id) }}">
                                                 @csrf
-                                                <label class="col-md-4">
+                                                <label class="col-md-6 col-sm-12">
                                                     <i class="ti ti-user"></i>
                                                     <span class="ttm-form-control">
                                                         <input class="text-input" name="accname" type="text"
@@ -112,15 +112,8 @@
                                                                required="required"></span>
                                                 </label>
 
-                                                <label class="col-md-4">
-                                                    <i class="ti ti-user"></i>
-                                                    <span class="ttm-form-control">
-                                                        <input class="text-input" name="accnum" type="text"
-                                                               value="" placeholder="Account Number:*"
-                                                               required="required"></span>
-                                                </label>
 
-                                                <label class="col-md-4">
+                                                <label class="col-md-6 col-sm-12">
                                                     <i class="ti ti-user"></i>
                                                     <span class="ttm-form-control">
                                                         <input class="text-input" name="bankname" type="text"
@@ -128,7 +121,7 @@
                                                                required="required"></span>
                                                 </label>
 
-                                                <label class="col-md-4">
+                                                <label class="col-md-6 col-sm-12">
                                                     <i class="ti ti-email"></i>
                                                     <span class="ttm-form-control">
                                                         <input class="text-input" name="email" type="text"
@@ -136,7 +129,7 @@
                                                                required="required"></span>
                                                 </label>
 
-                                                <label class="col-md-4">
+                                                <label class="col-md-6 col-sm-12">
                                                     <i class="ti ti-star"></i>
                                                     <span class="ttm-form-control">
                                                         <input class="text-input" minlength="4" name="votes" type="number"
@@ -144,7 +137,7 @@
                                                                required="required"></span>
                                                 </label>
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-12">
                                                     <input name="submit" type="submit" value="Submit" class="ttm-btn ttm-btn-size-sm ttm-btn-shape-round ttm-btn-style-fill ttm-btn-color-skincolor mt-10" id="submit" title="Submit">
                                                 </div>
                                             </form>
