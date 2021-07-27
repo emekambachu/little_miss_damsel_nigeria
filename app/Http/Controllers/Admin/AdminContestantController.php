@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class AdminContestantController extends Controller
 {
@@ -265,6 +266,8 @@ class AdminContestantController extends Controller
 
             //assign image name to $input array
             $input['image'] = $name;
+        }else{
+            $input['image'] = $contestant->image;
         }
 
         $input['slug'] = Str::slug($input['name']);
@@ -281,10 +284,19 @@ class AdminContestantController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+
+        $contestant = Contestant::findOrFail($id);
+
+        if (!empty($contestant->image) && File::exists(public_path() . '/photos/' . $contestant->image)) {
+            FILE::delete(public_path() . '/photos/' . $contestant->image);
+        }
+
+        $contestant->delete();
+
+        Session::flash('warning', 'Contestant deleted');
+        return redirect()->back();
     }
 }

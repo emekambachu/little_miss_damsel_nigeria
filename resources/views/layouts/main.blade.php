@@ -121,7 +121,7 @@
                                     <nav id="menu" class="menu">
                                         <ul class="dropdown">
                                             <li><a href="{{ url('/') }}">Home</a></li>
-{{--                                            <li><a href="{{ route('vote-contestants.index') }}">Contestants</a></li>--}}
+                                            <li><a href="{{ route('vote-contestants.index') }}">Contestants</a></li>
                                             <li><a href="{{ url('fashion-exhibition') }}">Fashion Exhibition</a></li>
 {{--                                            <li><a href="{{ url('about') }}">About us</a></li>--}}
                                             <li><a href="{{ url('registration') }}">Registration</a></li>
@@ -247,7 +247,7 @@
 
 <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("Oct 31, 2020 18:00:00").getTime();
+    var countDownDate = new Date("Aug 18, 2021 18:00:00").getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
