@@ -299,4 +299,27 @@ class AdminContestantController extends Controller
         Session::flash('warning', 'Contestant deleted');
         return redirect()->back();
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteContestants(){
+
+        $contestants = Contestant::all();
+
+        foreach($contestants as $contestant){
+
+            if (!empty($contestant->image) && File::exists(public_path() . '/photos/' . $contestant->image)) {
+                FILE::delete(public_path() . '/photos/' . $contestant->image);
+            }
+
+            $contestant->delete();
+        }
+
+        return "Contestants Deleted";
+    }
+
 }
