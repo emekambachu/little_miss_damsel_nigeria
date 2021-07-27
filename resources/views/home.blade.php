@@ -234,7 +234,7 @@
                                     <p>NOTE: Each vote costs ₦50 Naira, minimum vote is 4500<br><br>
                                         Step 1: Click on the Contestant you wish to vote for.<br><br>
                                         Step 2: Pick a payment method, Paystack or Bank payment/Transfer.<br><br>
-                                        Step 3: If you choose paystack, click on the paystack icon and you will be directed to the payment page. Fill in your details and the amount of money you would like to spend on voting. Each vote cost 50 naira and the minimum votes is 4500.<br><br>
+                                        Step 3: If you choose paystack, click on the paystack icon and you will be directed to the payment page. Fill in your details and the amount of money you would like to spend on voting. Each vote cost 50 naira and the minimum votes is 3000.<br><br>
                                         Step 4: If you choose to pay via bank payment or transfer, ignore the paystack. First pay your equivalent amount to our account number given on the vote page and fill in your payment details in the form and vote, your vote will be added once payment has been approved..</p>
                                 </div><!-- section title end -->
                                 <div class="separator clearfix">
