@@ -203,16 +203,17 @@
             </div>
         </section>
 
-        <section class="ttm-row service-section style2 bg-layer clearfix bg-layer-equal-height break-991-colum" style="background: url({{ asset('main/bg/bg2.png') }}) fixed no-repeat; background-size: cover;">
+        <section class="ttm-row service-section style2 bg-layer clearfix bg-layer-equal-height break-991-colum"
+                 style="background: url({{ asset('main/bg/bg2.png') }}) fixed no-repeat; background-size: cover;">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5">
+                    <div class="col-md-12 col-lg-5" style="background-image: url({{ asset('main/home/vote.jpg')}})">
                         <!-- col-bg-img-three -->
-                        <div class="col-bg-img-three ttm-col-bgimage-yes ttm-bg ttm-left-span res-991-mt-0 mt_60">
-                            <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
-                            <div class="layer-content">
-                            </div>
-                        </div><!-- col-bg-img-three end-->
+{{--                        <div class="col-bg-img-three ttm-col-bgimage-yes ttm-bg ttm-left-span res-991-mt-0 mt_60">--}}
+{{--                            <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>--}}
+{{--                            <div class="layer-content">--}}
+{{--                            </div>--}}
+{{--                        </div><!-- col-bg-img-three end-->--}}
                         <img src="{{ asset('main/home/vote.jpg') }}" class="ttm-equal-height-image" alt="bg-image">
                     </div>
 
