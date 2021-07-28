@@ -213,7 +213,7 @@
                             <div class="layer-content">
                             </div>
                         </div><!-- col-bg-img-three end-->
-                        <img src="{{ asset('main/home/vote.jpeg') }}" class="ttm-equal-height-image" alt="bg-image">
+                        <img src="{{ asset('main/home/vote.jpg') }}" class="ttm-equal-height-image" alt="bg-image">
                     </div>
 
                     <div class="col-lg-7 col-md-12">
