@@ -75,7 +75,7 @@ class LazyString implements \Stringable, \JsonSerializable
      */
     final public static function isStringable($value): bool
     {
-        return \is_string($value) || $value instanceof self || (\is_object($value) ? method_exists($value, '__toString') : is_scalar($value));
+        return \is_string($value) || $value instanceof self || (\is_object($value) ? method_exists($value, '__toString') : \is_scalar($value));
     }
 
     /**
@@ -113,7 +113,7 @@ class LazyString implements \Stringable, \JsonSerializable
 
             if (\PHP_VERSION_ID < 70400) {
                 // leverage the ErrorHandler component with graceful fallback when it's not available
-                return trigger_error($e, E_USER_ERROR);
+                return trigger_error($e, \E_USER_ERROR);
             }
 
             throw $e;

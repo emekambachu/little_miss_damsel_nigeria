@@ -8,9 +8,13 @@ class Vote extends Model
 {
     protected $fillable = [
         'contestant_id',
+        'email',
+        'ip',
+        'amount',
     ];
 
-    public function contestant(){
-        return $this->belongsTo(Contestant::class);
+    public function contestant(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Contestant::class, 'contestant_id', 'id');
     }
 }

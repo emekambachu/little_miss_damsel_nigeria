@@ -1,0 +1,25 @@
+{
+    "name": "timwassenburg/laravel-service-generator",
+    "description": "Generate Laravel services",
+    "keywords": ["generator", "php", "cli", "laravel", "artisan", "services", "pattern"],
+    "homepage": "https://github.com/timwassenburg/laravel-service-generator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tim Wassenburg"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TimWassenburg\\ServiceGenerator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TimWassenburg\\ServiceGenerator\\Http\\Providers\\CommandServiceProvider",
+                "TimWassenburg\\ServiceGenerator\\ServiceGeneratorServiceProvider"
+            ]
+        }
+    }
+}

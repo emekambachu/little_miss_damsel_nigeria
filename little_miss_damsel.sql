@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 19, 2020 at 05:18 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Sep 13, 2022 at 05:18 PM
+-- Server version: 5.7.36
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,42 +24,71 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admins`
+--
+
+DROP TABLE IF EXISTS `admins`;
+CREATE TABLE IF NOT EXISTS `admins` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `admins_username_unique` (`username`),
+  UNIQUE KEY `admins_email_unique` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `name`, `email`, `username`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'neutrondeveloper@gmail.com', 'admin', NULL, '$2y$10$IJUBFr3SuD6zRe1Acd0MXOPS.fbb5hcRG4vNygJfVybQT.3.fLS0a', NULL, NULL, '2021-07-17 15:14:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `applications`
 --
 
 DROP TABLE IF EXISTS `applications`;
 CREATE TABLE IF NOT EXISTS `applications` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `application_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `surname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `other_names` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `application_id` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `surname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `other_names` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `age` int(11) NOT NULL,
-  `health_issues` tinyint(1) NOT NULL DEFAULT 0,
-  `health_details` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vital_state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `school_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `school_class` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `height` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bust` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `waist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hips` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `question1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `question2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `question3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `question4` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `question5` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent_surname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent_other_names` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent_mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_details` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `paid` tinyint(1) NOT NULL DEFAULT 0,
+  `health_issues` tinyint(1) NOT NULL DEFAULT '0',
+  `health_details` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vital_state` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `school_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `school_class` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `height` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bust` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `waist` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hips` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `question1` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question2` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question3` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question4` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question5` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_surname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_other_names` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_mobile` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_address` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_details` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `paid` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -86,8 +114,8 @@ CREATE TABLE IF NOT EXISTS `contestants` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `image` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `votes` int(11) DEFAULT 0,
+  `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `votes` int(11) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -123,8 +151,6 @@ INSERT INTO `contestants` (`id`, `image`, `slug`, `name`, `votes`, `created_at`,
 (23, '160049742623.jpg', 'queen-esther-mandu', 'Queen-Esther Mandu', NULL, '2020-09-19 05:37:09', '2020-09-19 05:37:09'),
 (24, '160049746024.jpg', 'faith-chisaoka-woka', 'Faith Chisaoka Woka', NULL, '2020-09-19 05:37:44', '2020-09-19 11:47:19'),
 (25, '160049749725.jpg', 'chinalu-ukachukwu', 'Chinalu Ukachukwu', NULL, '2020-09-19 05:38:20', '2020-09-19 05:38:20'),
-(26, '160049752326.jpg', 'sokeiprim-george', 'Sokeiprim George', NULL, '2020-09-19 05:38:45', '2020-09-19 12:39:07'),
-(27, '160049755027.jpg', 'christabel-ifejika', 'Christabel Ifejika', NULL, '2020-09-19 05:39:14', '2020-09-19 05:39:14'),
 (28, '160049758028.jpg', 'sonia-lucky', 'Sonia Lucky', NULL, '2020-09-19 05:39:43', '2020-09-19 12:45:52'),
 (29, '160053455429.jpg', 'oyinyechi-okechukwu', 'Oyinyechi Okechukwu', 0, '2020-09-19 15:55:57', '2020-09-19 15:55:57'),
 (30, '160053459130.jpg', 'cynthia-ugwuoke', 'Cynthia Ugwuoke', 0, '2020-09-19 15:56:34', '2020-09-19 15:56:34'),
@@ -135,23 +161,8 @@ INSERT INTO `contestants` (`id`, `image`, `slug`, `name`, `votes`, `created_at`,
 (35, '160053471835.jpg', 'lucky-daniella-chioma', 'Lucky Daniella Chioma', 0, '2020-09-19 15:58:41', '2020-09-19 15:58:41'),
 (36, '160053481136.jpg', 'favour-chinedu', 'Favour Chinedu', 0, '2020-09-19 16:00:14', '2020-09-19 16:00:14'),
 (37, '160053483837.jpg', 'albert-angel-clinton', 'Albert Angel Clinton', 0, '2020-09-19 16:00:41', '2020-09-19 16:00:41'),
-(38, '160053487138.jpg', 'boma-wyse', 'Boma Wyse', 0, '2020-09-19 16:01:14', '2020-09-19 16:01:14'),
 (39, '160053504839.jpg', 'sokari-west', 'Sokari West', 0, '2020-09-19 16:04:11', '2020-09-19 16:04:11'),
-(40, '160053508340.jpg', 'emmanuella-k-botoye', 'Emmanuella K. Botoye', 0, '2020-09-19 16:04:46', '2020-09-19 16:04:46'),
-(41, '160053511041.jpg', 'delphina-edebiri', 'Delphina Edebiri', 0, '2020-09-19 16:05:13', '2020-09-19 16:05:13'),
-(42, '160053515342.jpg', 'oghomeh-olere-elma', 'Oghomeh Olere Elma', 0, '2020-09-19 16:05:56', '2020-09-19 16:05:56'),
-(43, '160053518043.jpg', 'shalom-chukwu', 'Shalom Chukwu', 0, '2020-09-19 16:06:23', '2020-09-19 16:06:23'),
-(44, '160053520544.jpg', 'victory-obioma', 'Victory Obioma', 0, '2020-09-19 16:06:49', '2020-09-19 16:06:49'),
-(45, '160053522845.jpg', 'esther-obioma', 'Esther Obioma', 0, '2020-09-19 16:07:11', '2020-09-19 16:07:11'),
-(46, '160053525746.jpg', 'gwendolyn-okon', 'Gwendolyn Okon', 0, '2020-09-19 16:07:40', '2020-09-19 16:07:40'),
-(47, '160053529347.jpg', 'daniella-o-ogah', 'Daniella O. Ogah', 0, '2020-09-19 16:08:16', '2020-09-19 16:08:16'),
-(48, '160053533948.jpg', 'praise-gideon-worukwo', 'Praise Gideon Worukwo', 0, '2020-09-19 16:09:02', '2020-09-19 16:09:02'),
-(49, '160053537549.jpg', 'biobele-longjohn', 'Biobele LongJohn', 0, '2020-09-19 16:09:37', '2020-09-19 16:09:37'),
-(50, '160053539450.jpg', 'omagbemi-princess', 'Omagbemi Princess', 0, '2020-09-19 16:09:57', '2020-09-19 16:09:57'),
-(51, '160053542151.jpg', 'isabella-madubuogo', 'Isabella Madubuogo', 0, '2020-09-19 16:10:24', '2020-09-19 16:10:24'),
-(52, '160053544552.jpg', 'chinasa-ewuru', 'Chinasa Ewuru', 0, '2020-09-19 16:10:48', '2020-09-19 16:10:48'),
-(53, '160053546653.jpg', 'blosson-dare', 'Blosson Dare', 0, '2020-09-19 16:11:09', '2020-09-19 16:11:09'),
-(54, '160053549954.jpg', 'deborah-ojuekaiye', 'Deborah Ojuekaiye', 0, '2020-09-19 16:11:41', '2020-09-19 16:11:41');
+(40, '160053508340.jpg', 'emmanuella-k-botoye', 'Emmanuella K. Botoye', 0, '2020-09-19 16:04:46', '2020-09-19 16:04:46');
 
 -- --------------------------------------------------------
 
@@ -166,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -179,10 +190,10 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -195,7 +206,38 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_11_14_125545_create_applications_table', 1),
 (5, '2019_07_31_150941_create_contestants_table', 2),
 (6, '2019_07_31_151402_create_votes_table', 2),
-(7, '2019_07_31_152443_create_payments_table', 2);
+(7, '2019_07_31_152443_create_payments_table', 2),
+(8, '2019_12_14_000001_create_personal_access_tokens_table', 3),
+(9, '2022_09_13_134344_create_sessions_table', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pairings`
+--
+
+DROP TABLE IF EXISTS `pairings`;
+CREATE TABLE IF NOT EXISTS `pairings` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `payer_id` bigint(20) UNSIGNED NOT NULL,
+  `receiver_id` bigint(20) UNSIGNED NOT NULL,
+  `amount` int(11) NOT NULL,
+  `proof_of_payment` text COLLATE utf8mb4_unicode_ci,
+  `time_limit` int(50) NOT NULL,
+  `confirm_payment` tinyint(4) NOT NULL DEFAULT '0',
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  `cancelled` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pairings`
+--
+
+INSERT INTO `pairings` (`id`, `payer_id`, `receiver_id`, `amount`, `proof_of_payment`, `time_limit`, `confirm_payment`, `approved`, `cancelled`, `created_at`, `updated_at`) VALUES
+(2, 3, 4, 5000, 'Dexter Neutron-16268825537f377b725a568efb281bb69a25995967.jpg', 12, 1, 1, 0, '2021-07-21 10:24:35', '2021-07-21 15:37:03');
 
 -- --------------------------------------------------------
 
@@ -205,10 +247,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`(250))
+  KEY `password_resets_email_index` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -222,12 +264,12 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `contestant_id` int(10) UNSIGNED DEFAULT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accnum` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bank` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `accname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accnum` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` int(11) NOT NULL,
   `votes` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   `payment_method` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -238,16 +280,92 @@ CREATE TABLE IF NOT EXISTS `payments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment_plans`
+--
+
+DROP TABLE IF EXISTS `payment_plans`;
+CREATE TABLE IF NOT EXISTS `payment_plans` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `percentage` int(50) NOT NULL,
+  `days` int(50) NOT NULL,
+  `min` int(50) NOT NULL,
+  `max` int(50) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payment_plans`
+--
+
+INSERT INTO `payment_plans` (`id`, `percentage`, `days`, `min`, `max`, `created_at`, `updated_at`) VALUES
+(1, 50, 7, 5000, 900000, NULL, NULL),
+(2, 100, 7, 1000000, 3000000, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+DROP TABLE IF EXISTS `personal_access_tokens`;
+CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessions_user_id_index` (`user_id`),
+  KEY `sessions_last_activity_index` (`last_activity`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('bfj9OARnxuV2v0gbTpmlucVdOiv7ABDcxzFll8Wq', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVzI1cGpIaThxWUdsUW9pWjJKcnpEamJ6bnFzRVhaMHVpcVUwT2swcCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1663076764),
+('iHqhNL5ID1jdsttLFuDlpqaMC92IBjXmPaFT9ZRL', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUm9wM3oyZDR2WVVtcVdxdXVYSVV2c0VBOVhIanYxWFlib2x2YXFhbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2xvZ2luIjt9fQ==', 1663076775),
+('cbRoyT2Rjb7edU6Q7UZfW02GpIMi59El2WdAMlq4', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNFBQM2hXRVRtdDNjeTdVNUtqcDJMRHRGRWdsc3hldTJqZHp4ZWxaeCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fX0=', 1663086684);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -261,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Administrator', 'kidstarmodels@gmail.com', NULL, '$2y$12$h/u/p1ORNYMbcseluVekZ.d1KtGlxWOD6zzlyXOmHgSterQ6T/ke.', '7jicz6coSo9QEvxmzHtiw2j4dcKmcvkcYJaIwndMRqj7jb1OnGyrybLQB3XE', NULL, NULL, NULL);
+(1, 'Administrator', 'kidstarmodels@gmail.com', NULL, '$2y$12$Y9Ug0wdaA9nKITd7SrDzle21WLi0.7jsUm0CqsWcLRRkHouX48Cje', '7jicz6coSo9QEvxmzHtiw2j4dcKmcvkcYJaIwndMRqj7jb1OnGyrybLQB3XE', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -273,6 +391,9 @@ DROP TABLE IF EXISTS `votes`;
 CREATE TABLE IF NOT EXISTS `votes` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `contestant_id` int(10) UNSIGNED DEFAULT NULL,
+  `email` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip` text COLLATE utf8mb4_unicode_ci,
+  `amount` bigint(12) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),

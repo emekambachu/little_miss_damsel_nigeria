@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class GithubDeploymentController extends Controller
 {
-    public function deploy()
+    public function deploy(): string
     {
         $commands = array(
             'echo $PWD',
@@ -35,6 +35,8 @@ class GithubDeploymentController extends Controller
         Artisan::call('cache:clear');
         dump(Artisan::output());
         Artisan::call('view:clear');
+        dump(Artisan::output());
+        Artisan::call('clear-compiled');
         dump(Artisan::output());
 
         return $output;

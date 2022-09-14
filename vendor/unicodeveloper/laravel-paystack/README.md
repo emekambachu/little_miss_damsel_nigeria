@@ -100,7 +100,7 @@ return [
 Though there are multiple ways to pay an order, most payment gateways expect you to follow the following flow in your checkout process:
 
 ### 1. The customer is redirected to the payment provider
-After the customer has gone through the checkout process and is ready to pay, the customer must be redirected to site of the payment provider.
+After the customer has gone through the checkout process and is ready to pay, the customer must be redirected to the site of the payment provider.
 
 The redirection is accomplished by submitting a form with some hidden fields. The form must send a POST request to the site of the payment provider. The hidden fields minimally specify the amount that must be paid, the order id and a hash.
 
@@ -111,7 +111,7 @@ The hash is calculated using the hidden form fields and a non-public secret. The
 The customer arrives on the site of the payment provider and gets to choose a payment method. All steps necessary to pay the order are taken care of by the payment provider.
 
 ### 3. The customer gets redirected back to your site
-After having paid the order the customer is redirected back. In the redirection request to the shop-site some values are returned. The values are usually the order id, a paymentresult and a hash.
+After having paid the order the customer is redirected back. In the redirection request to the shop-site some values are returned. The values are usually the order id, a payment result and a hash.
 
 The hash is calculated out of some of the fields returned and a secret non-public value. This hash is used to verify if the request is valid and comes from the payment provider. It is paramount that this hash is thoroughly checked.
 
@@ -147,6 +147,13 @@ Route::post('/pay', [
     'as' => 'pay'
 ]);
 ```
+OR
+
+```php
+// Laravel 8 & 9
+Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
+```
+
 
 ```php
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
@@ -161,6 +168,13 @@ Route::get('payment/callback', [
 ]);
 ```
 
+OR
+
+```php
+// Laravel 8 & 9
+Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
+```
+
 ```php
 <?php
 
@@ -170,6 +184,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use Paystack;
 
 class PaymentController extends Controller
@@ -181,7 +196,11 @@ class PaymentController extends Controller
      */
     public function redirectToGateway()
     {
-        return Paystack::getAuthorizationUrl()->redirectNow();
+        try{
+            return Paystack::getAuthorizationUrl()->redirectNow();
+        }catch(\Exception $e) {
+            return Redirect::back()->withMessage(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
+        }        
     }
 
     /**
@@ -264,7 +283,7 @@ Paystack::getAllTransactions();
 paystack()->getAllTransactions();
 
 /**
- * This method generates a unique super secure cryptograhical hash token to use as transaction reference
+ * This method generates a unique super secure cryptographic hash token to use as transaction reference
  * @returns string
  */
 Paystack::genTranxRef();
@@ -325,10 +344,27 @@ paystack()->updateSubAccount();
 
 A sample form will look like so:
 
+```php
+<?php
+// more details https://paystack.com/docs/payments/multi-split-payments/#dynamic-splits
+
+$split = [
+   "type" => "percentage",
+   "currency" => "KES",
+   "subaccounts" => [
+    [ "subaccount" => "ACCT_li4p6kte2dolodo", "share" => 10 ],
+    [ "subaccount" => "ACCT_li4p6kte2dolodo", "share" => 30 ],
+   ],
+   "bearer_type" => "all",
+   "main_account_share" => 70
+];
+?>
+```
+
 ```html
 <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
-        <div class="row" style="margin-bottom:40px;">
-          <div class="col-md-8 col-md-offset-2">
+    <div class="row" style="margin-bottom:40px;">
+        <div class="col-md-8 col-md-offset-2">
             <p>
                 <div>
                     Lagos Eyo Print Tee Shirt
@@ -342,18 +378,20 @@ A sample form will look like so:
             <input type="hidden" name="currency" value="NGN">
             <input type="hidden" name="metadata" value="{{ json_encode($array = ['key_name' => 'value',]) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
             <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+            
+            <input type="hidden" name="split_code" value="SPL_EgunGUnBeCareful"> {{-- to support transaction split. more details https://paystack.com/docs/payments/multi-split-payments/#using-transaction-splits-with-payments --}}
+            <input type="hidden" name="split" value="{{ json_encode($split) }}"> {{-- to support dynamic transaction split. More details https://paystack.com/docs/payments/multi-split-payments/#dynamic-splits --}}
             {{ csrf_field() }} {{-- works only when using laravel 5.1, 5.2 --}}
 
-             <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
-
+            <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
 
             <p>
-              <button class="btn btn-success btn-lg btn-block" type="submit" value="Pay Now!">
-              <i class="fa fa-plus-circle fa-lg"></i> Pay Now!
-              </button>
+                <button class="btn btn-success btn-lg btn-block" type="submit" value="Pay Now!">
+                    <i class="fa fa-plus-circle fa-lg"></i> Pay Now!
+                </button>
             </p>
-          </div>
         </div>
+    </div>
 </form>
 ```
 
@@ -367,7 +405,7 @@ We must validate if the redirect to our site is a valid request (we don't want i
 
 In the controller that handles the request coming from the payment provider, we have
 
-`Paystack::getPaymentData()` - This function calls the verification methods and ensure it is a valid transction else it throws an exception.
+`Paystack::getPaymentData()` - This function calls the verification methods and ensure it is a valid transaction else it throws an exception.
 
 You can test with these details
 

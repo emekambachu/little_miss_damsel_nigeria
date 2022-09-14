@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AdminLoginRequest;
 use App\Providers\RouteServiceProvider;
+use App\Services\Auth\AdminLoginService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -18,6 +21,10 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+    private $login;
+    public function __construct(AdminLoginService $login){
+        $this->login = $login;
+    }
 
     use AuthenticatesUsers;
 
@@ -31,10 +38,35 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
-    public function __construct()
+    public function showLoginForm(){
+        return view('auth.login', ['url' => 'login']);
+    }
+
+    public function login(AdminLoginRequest $request){
+        try {
+            return $this->login->adminLogin($request);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    //add for logout function to work
+    use AuthenticatesUsers {
+        logout as performLogout;
+    }
+
+    //perform logout
+    public function logout(): \Illuminate\Http\RedirectResponse
     {
-        $this->middleware('guest')->except('logout');
+        try {
+            return $this->login->adminLogout();
+        } catch (\Exception $e) {
+            Session::flash('error', $e->getMessage());
+            return redirect()->back();
+        }
     }
 }

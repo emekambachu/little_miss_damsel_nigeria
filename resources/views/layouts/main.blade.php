@@ -122,10 +122,12 @@
                                         <ul class="dropdown">
                                             <li><a href="{{ url('/') }}">Home</a></li>
                                             <li><a href="{{ route('vote-contestants.index') }}">Contestants</a></li>
-                                            <li><a href="{{ url('fashion-exhibition') }}">Fashion Exhibition</a></li>
-{{--                                            <li><a href="{{ url('about') }}">About us</a></li>--}}
-                                            <li><a href="{{ url('registration') }}">Registration</a></li>
-                                            <li><a href="{{ url('contact') }}">Contact us</a></li>
+                                            <li><a href="https://www.littlemissdamselng.com/about-us/">About us</a></li>
+                                            <li><a href="https://www.littlemissdamselng.com/lmdn-fashion-show/">Fashion Exhibition</a></li>
+                                            <li><a href="https://www.littlemissdamselng.com/gallery/">Gallery</a></li>
+                                            <li><a href="https://forms.gle/dMxevqj5gjKrTfUo7">Registration</a></li>
+                                            <li><a href="https://www.littlemissdamselng.com/blog/">Post</a></li>
+                                            <li><a href="https://www.littlemissdamselng.com/contacts/">Contact us</a></li>
                                         </ul>
                                     </nav>
                                 </div>

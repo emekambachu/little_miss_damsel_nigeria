@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GithubDeploymentController;
+use App\Http\Controllers\Home\Contestant\HomeContestantController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', static function () {
-    return view('home');
-});
+Auth::routes();
+
+//Route::get('/', static function () {
+//    return view('contestants.index');
+//});
 
 Route::get('fashion-exhibition', static function () {
     return view('fashion-exhibition');
@@ -32,6 +35,9 @@ Route::get('contact', static function () {
 });
 
 Route::post('submit-contact', 'WebsiteController@contactForm');
+
+
+Route::get('/', [HomeContestantController::class, 'index'])->name('home.index');
 
 // Contestant Controllers
 Route::resource('vote-contestants', 'ContestantController');
@@ -51,39 +57,12 @@ Route::get('contestants/voting-complete', 'ContestantController@votingComplete')
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
-
-Auth::routes();
-
-Route::get('/admin', 'AdminController@index')->name('admin');
-
-// Dashboard Page
-Route::get('admin/dashboard', 'AdminController@index')->name('admin-dashboard');
-
-// Admin Application Controller
-Route::resource('admin/applications', 'ApplicationController');
-
-// Admin Contestant Controller
-Route::resource('admin/contestants', 'Admin\AdminContestantController');
-Route::get('admin/search-contestants', ['uses' => 'Admin\AdminContestantController@search']);
-Route::get('admin/payments', 'Admin\AdminContestantController@payments');
-Route::post('admin/payments/approve/{id}', ['uses' => 'Admin\AdminContestantController@approve']);
-Route::get('admin/search-payments', 'Admin\AdminContestantController@searchPayments');
-
-Route::get('admin/delete-contestants', 'Admin\AdminContestantController@deleteContestants');
-Route::get('admin/delete-payments', 'Admin\AdminContestantController@deletePayments');
-
-// Fund User Form
-Route::post('/admin/applications/approve/{id}', ['uses' => 'ApplicationController@approve']);
-
-// Paid Applications
-Route::get('applications/paid-applications', 'ApplicationController@paidApplications')->name('paid-applications');
-
-// Pending Applications
-Route::get('applications/pending-applications', 'ApplicationController@pendingApplications')->name('pending-applications');
-
-Route::get('registration-complete', static function () {
-    return view('registration-complete');
-});
+// Admin Account SPA
+Route::get('/admin/{any}', static function () {
+    return view('admin.index');
+})->where('any', '.*');
 
 //Github Deployment
-Route::post('github/deploy', [GithubDeploymentController::class, 'deploy']);
+Route::post('/github/deploy', [GithubDeploymentController::class, 'deploy']);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

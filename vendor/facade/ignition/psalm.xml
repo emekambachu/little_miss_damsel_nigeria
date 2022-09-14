@@ -7,6 +7,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    errorBaseline="psalm-baseline.xml"
 >
     <projectFiles>
         <directory name="src"/>
@@ -34,13 +35,10 @@
         <UndefinedClass>
             <errorLevel type="suppress">
                 <file name="src/ErrorPage/ErrorPageViewModel.php" />
+                <file name="src/ErrorPage/IgnitionExceptionRenderer.php" />
+                <file name="src/IgnitionServiceProvider.php" />
             </errorLevel>
         </UndefinedClass>
-        <UnusedClosureParam>
-            <errorLevel type="suppress">
-                <file name="src/SolutionProviders/InvalidRouteActionSolutionProvider.php" />
-            </errorLevel>
-        </UnusedClosureParam>
     </issueHandlers>
 
     <plugins>

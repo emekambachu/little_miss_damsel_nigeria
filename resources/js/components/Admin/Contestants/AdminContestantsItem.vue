@@ -1,0 +1,98 @@
+<template>
+    <tr v-if="!deleted">
+            <td>
+                <img :src="'/photos/'+user.image" width="100"/>
+            </td>
+            <td>
+                Name: {{ user.name }}<br>
+                Date Created: {{ fullDate(user.created_at) }}
+            </td>
+            <td>{{ user.contestant_votes }}</td>
+            <td>
+                <button @click="deleteContestant(user.id)" type="button" class="btn btn-danger mr-2">Deleted</button>
+                <router-link :to="{ name: 'AdminEditContestant', params: { id: user.id }}">
+                    <button type="button" class="btn btn-warning">Edit</button>
+                </router-link>
+            </td>
+    </tr>
+</template>
+
+<script>
+
+import moment from 'moment';
+
+export default {
+    props: {
+        user: Object
+    },
+    data() {
+        return {
+            deleted: false,
+        }
+    },
+    methods: {
+        fullDate(value) {
+            return moment(value).format('MMMM Do YYYY, h:mm:ss a');
+        },
+
+        deleteContestant(id) {
+            // Install sweetalert2 to use
+            Swal.fire({
+                html: "<h3>Delete <span class='text-success'>" + this.user.name + "s</span> records</h3>",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    // Loading
+                    Swal.fire({
+                        title: 'Please Wait !',
+                        html: 'Deleting',// add html attribute if you want or remove
+                        allowOutsideClick: false,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        },
+                    });
+                    axios.delete('/api/admin/contestants/' + id + '/delete')
+                        .then((response) => {
+                            if (response.data.success === true) {
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 8000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted'
+                                });
+                                this.deleted = true;
+                            }
+                        }).catch((error) => {
+                        console.log(error);
+                    });
+                } else if (result.isDenied) {
+                    return false;
+                }
+            });
+        },
+    },
+
+    mounted() {
+
+    }
+}
+</script>
+
+<style scoped>
+
+</style>

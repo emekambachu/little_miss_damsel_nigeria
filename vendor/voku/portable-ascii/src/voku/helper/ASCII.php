@@ -200,7 +200,7 @@ final class ASCII
      *
      * @return string[]
      *
-     * @psalm-return array<string, string>
+     * @phpstan-return array<string, string>
      */
     public static function getAllLanguages(): array
     {
@@ -238,7 +238,7 @@ final class ASCII
      *
      * @return array
      *
-     * @psalm-return array<string, array<string , string>>
+     * @phpstan-return array<string, array<string , string>>
      */
     public static function charsArray(bool $replace_extra_symbols = false): array
     {
@@ -268,7 +268,7 @@ final class ASCII
      * @return array
      *               <p>An array of replacements.</p>
      *
-     * @psalm-return array<string, array<int, string>>
+     * @phpstan-return array<string, array<int, string>>
      */
     public static function charsArrayWithMultiLanguageValues(bool $replace_extra_symbols = false): array
     {
@@ -300,10 +300,7 @@ final class ASCII
 
         $CHARS_ARRAY[$cacheKey] = $return;
 
-        /** @noinspection PhpSillyAssignmentInspection - hack for phpstan */
-        /** @var array<string, array<int, string>> $return */
-        $return = $return;
-
+        /** @var array<string, array<int, string>> $return - hack for phpstan */
         return $return;
     }
 
@@ -332,7 +329,7 @@ final class ASCII
      * @return array
      *               <p>An array of replacements.</p>
      *
-     * @psalm-return array{orig: string[], replace: string[]}|array<string, string>
+     * @phpstan-return array{orig: string[], replace: string[]}|array<string, string>
      */
     public static function charsArrayWithOneLanguage(
         string $language = self::ENGLISH_LANGUAGE_CODE,
@@ -428,7 +425,7 @@ final class ASCII
      * @return array
      *               <p>An array of replacements.</p>
      *
-     * @psalm-return array{orig: string[], replace: string[]}|array<string, string>
+     * @phpstan-return array{orig: string[], replace: string[]}|array<string, string>
      */
     public static function charsArrayWithSingleLanguageValues(
         bool $replace_extra_symbols = false,
@@ -612,10 +609,11 @@ final class ASCII
      * ASCII::normalize_whitespace("abc-\xc2\xa0-öäü-\xe2\x80\xaf-\xE2\x80\xAC", true); // "abc-\xc2\xa0-öäü- -"
      * </code>
      *
-     * @param string $str                     <p>The string to be normalized.</p>
-     * @param bool   $keepNonBreakingSpace    [optional] <p>Set to true, to keep non-breaking-spaces.</p>
-     * @param bool   $keepBidiUnicodeControls [optional] <p>Set to true, to keep non-printable (for the web)
-     *                                        bidirectional text chars.</p>
+     * @param string $str                          <p>The string to be normalized.</p>
+     * @param bool   $keepNonBreakingSpace         [optional] <p>Set to true, to keep non-breaking-spaces.</p>
+     * @param bool   $keepBidiUnicodeControls      [optional] <p>Set to true, to keep non-printable (for the web)
+     *                                             bidirectional text chars.</p>
+     * @param bool   $normalize_control_characters [optional] <p>Set to true, to convert e.g. LINE-, PARAGRAPH-SEPARATOR with "\n" and LINE TABULATION with "\t".</p>
      *
      * @psalm-pure
      *
@@ -625,7 +623,8 @@ final class ASCII
     public static function normalize_whitespace(
         string $str,
         bool $keepNonBreakingSpace = false,
-        bool $keepBidiUnicodeControls = false
+        bool $keepBidiUnicodeControls = false,
+        bool $normalize_control_characters = false
     ): string {
         if ($str === '') {
             return '';
@@ -636,6 +635,26 @@ final class ASCII
          */
         static $WHITESPACE_CACHE = [];
         $cacheKey = (int) $keepNonBreakingSpace;
+
+        if ($normalize_control_characters) {
+            $str = \str_replace(
+                [
+                    "\x0d\x0c",     // 'END OF LINE'
+                    "\xe2\x80\xa8", // 'LINE SEPARATOR'
+                    "\xe2\x80\xa9", // 'PARAGRAPH SEPARATOR'
+                    "\x0c",         // 'FORM FEED' // "\f"
+                    "\x0b",         // 'VERTICAL TAB' // "\v"
+                ],
+                [
+                    "\n",
+                    "\n",
+                    "\n",
+                    "\n",
+                    "\t",
+                ],
+                $str
+            );
+        }
 
         if (!isset($WHITESPACE_CACHE[$cacheKey])) {
             self::prepareAsciiMaps();
@@ -656,7 +675,6 @@ final class ASCII
             static $BIDI_UNICODE_CONTROLS_CACHE = null;
 
             if ($BIDI_UNICODE_CONTROLS_CACHE === null) {
-                /** @noinspection PsalmLocalImmutableInspection */
                 $BIDI_UNICODE_CONTROLS_CACHE = self::$BIDI_UNI_CODE_CONTROLS_TABLE;
             }
 
@@ -676,6 +694,7 @@ final class ASCII
      * @param string $str
      * @param bool   $url_encoded
      * @param string $replacement
+     * @param bool   $keep_basic_control_characters
      *
      * @psalm-pure
      *
@@ -684,7 +703,8 @@ final class ASCII
     public static function remove_invisible_characters(
         string $str,
         bool $url_encoded = false,
-        string $replacement = ''
+        string $replacement = '',
+        bool $keep_basic_control_characters = true
     ): string {
         // init
         $non_displayables = [];
@@ -698,13 +718,83 @@ final class ASCII
             $non_displayables[] = '/%1[0-9a-fA-F]/'; // url encoded 16-31
         }
 
-        $non_displayables[] = '/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+/S'; // 00-08, 11, 12, 14-31, 127
+        if ($keep_basic_control_characters) {
+            $non_displayables[] = '/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+/S'; // 00-08, 11, 12, 14-31, 127
+        } else {
+            $str = self::normalize_whitespace($str, false, false, true);
+            $non_displayables[] = '/[^\P{C}\s]/u';
+        }
 
         do {
             $str = (string) \preg_replace($non_displayables, $replacement, $str, -1, $count);
         } while ($count !== 0);
 
         return $str;
+    }
+
+    /**
+     *  WARNING: This method will return broken characters and is only for special cases.
+     *
+     * Convert two UTF-8 encoded string to a single-byte strings suitable for
+     * functions that need the same string length after the conversion.
+     *
+     * The function simply uses (and updates) a tailored dynamic encoding
+     * (in/out map parameter) where non-ascii characters are remapped to
+     * the range [128-255] in order of appearance.
+     *
+     * @param string $str1
+     * @param string $str2
+     *
+     * @return string[]
+     *
+     * @phpstan-return array{0: string, 1: string}
+     */
+    public static function to_ascii_remap(string $str1, string $str2): array
+    {
+        $charMap = [];
+        $str1 = self::to_ascii_remap_intern($str1, $charMap);
+        $str2 = self::to_ascii_remap_intern($str2, $charMap);
+
+        return [$str1, $str2];
+    }
+
+    /**
+     * WARNING: This method will return broken characters and is only for special cases.
+     *
+     * Convert a UTF-8 encoded string to a single-byte string suitable for
+     * functions that need the same string length after the conversion.
+     *
+     * The function simply uses (and updates) a tailored dynamic encoding
+     * (in/out map parameter) where non-ascii characters are remapped to
+     * the range [128-255] in order of appearance.
+     *
+     * Thus, it supports up to 128 different multibyte code points max over
+     * the whole set of strings sharing this encoding.
+     *
+     * Source: https://github.com/KEINOS/mb_levenshtein
+     *
+     * @param  string $str UTF-8 string to be converted to extended ASCII.
+     * @return string Mapped borken string.
+     */
+    private static function to_ascii_remap_intern(string $str, array &$map): string
+    {
+        // find all utf-8 characters
+        $matches = [];
+        if (!\preg_match_all('/[\xC0-\xF7][\x80-\xBF]+/', $str, $matches)) {
+            return $str; // plain ascii string
+        }
+
+        // update the encoding map with the characters not already met
+        $mapCount = \count($map);
+        foreach ($matches[0] as $mbc) {
+            if (!isset($map[$mbc])) {
+                $map[$mbc] = \chr(128 + $mapCount);
+                $mapCount++;
+            }
+        }
+
+        // finally remap non-ascii characters
+        return \strtr($str, $map);
     }
 
     /**
@@ -777,7 +867,7 @@ final class ASCII
             $EXTRA_SYMBOLS_CACHE === null
         ) {
             $EXTRA_SYMBOLS_CACHE = [];
-            foreach (self::$ASCII_EXTRAS ?? [] as $extrasLanguageTmp => $extrasDataTmp) {
+            foreach (self::$ASCII_EXTRAS ?? [] as $extrasDataTmp) {
                 foreach ($extrasDataTmp as $extrasDataKeyTmp => $extrasDataValueTmp) {
                     $EXTRA_SYMBOLS_CACHE[$extrasDataKeyTmp] = $extrasDataKeyTmp;
                 }
@@ -789,7 +879,6 @@ final class ASCII
         if (\preg_match_all('/' . self::$REGEX_ASCII . ($replace_extra_symbols ? '|[' . $EXTRA_SYMBOLS_CACHE . ']' : '') . '/u', $str, $matches)) {
             if (!$replace_single_chars_only) {
                 if (self::$LANGUAGE_MAX_KEY === null) {
-                    /** @noinspection PsalmLocalImmutableInspection */
                     self::$LANGUAGE_MAX_KEY = self::getData('ascii_language_max_key');
                 }
 
@@ -904,7 +993,7 @@ final class ASCII
                 }
             }
 
-            foreach ($matches[0] as $keyTmp => $char) {
+            foreach ($matches[0] as $char) {
                 if (
                     !isset($charDone[$char])
                     &&
@@ -1156,13 +1245,11 @@ final class ASCII
                     return $str_tmp;
                 }
 
-                /** @noinspection CallableParameterUseCaseInTypeContextInspection */
                 $str = $str_tmp;
             }
         }
 
         if (self::$ORD === null) {
-            /** @noinspection PsalmLocalImmutableInspection */
             self::$ORD = self::getData('ascii_ord');
         }
 
@@ -1319,15 +1406,11 @@ final class ASCII
             return \strtolower($language);
         }
 
-        $regex = '/(?<first>[a-z]+)[\-_]\g{first}/i';
+        $language = \str_replace('-', '_', \strtolower($language));
 
-        return \str_replace(
-            '-',
-            '_',
-            \strtolower(
-                (string) \preg_replace($regex, '$1', $language)
-            )
-        );
+        $regex = '/(?<first>[a-z]+)_\g{first}/';
+
+        return (string) \preg_replace($regex, '$1', $language);
     }
 
     /**
@@ -1361,13 +1444,11 @@ final class ASCII
     private static function getDataIfExists(string $file): array
     {
         $file = __DIR__ . '/data/' . $file . '.php';
-        /**
-         * @noinspection LowPerformingFilesystemOperationsInspection
-         * -> we use this only once, so no extra caching is needed
-         */
-        if (\file_exists($file)) {
+        /** @psalm-suppress ImpureFunctionCall */
+        if (\is_file($file)) {
             /** @noinspection PhpIncludeInspection */
             /** @noinspection UsingInclusionReturnValueInspection */
+            /** @psalm-suppress UnresolvableInclude */
             return include $file;
         }
 
@@ -1386,7 +1467,6 @@ final class ASCII
             self::prepareAsciiExtras();
 
             /** @psalm-suppress PossiblyNullArgument - we use the prepare* methods here, so we don't get NULL here */
-            /** @noinspection PsalmLocalImmutableInspection */
             self::$ASCII_MAPS_AND_EXTRAS = \array_merge_recursive(
                 self::$ASCII_MAPS ?? [],
                 self::$ASCII_EXTRAS ?? []
@@ -1402,7 +1482,6 @@ final class ASCII
     private static function prepareAsciiMaps()
     {
         if (self::$ASCII_MAPS === null) {
-            /** @noinspection PsalmLocalImmutableInspection */
             self::$ASCII_MAPS = self::getData('ascii_by_languages');
         }
     }
@@ -1415,7 +1494,6 @@ final class ASCII
     private static function prepareAsciiExtras()
     {
         if (self::$ASCII_EXTRAS === null) {
-            /** @noinspection PsalmLocalImmutableInspection */
             self::$ASCII_EXTRAS = self::getData('ascii_extras_by_languages');
         }
     }

@@ -55,7 +55,7 @@ class AuthRouteMethods
     /**
      * Register the typical reset password routes for an application.
      *
-     * @return void
+     * @return callable
      */
     public function resetPassword()
     {
@@ -70,7 +70,7 @@ class AuthRouteMethods
     /**
      * Register the typical confirm password routes for an application.
      *
-     * @return void
+     * @return callable
      */
     public function confirmPassword()
     {
@@ -83,7 +83,7 @@ class AuthRouteMethods
     /**
      * Register the typical email verification routes for an application.
      *
-     * @return void
+     * @return callable
      */
     public function emailVerification()
     {

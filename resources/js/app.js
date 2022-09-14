@@ -4,9 +4,21 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+// Default
 require('./bootstrap');
+import {
+    createApp
+} from 'vue';
+import router from './routes';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
-window.Vue = require('vue');
+// Moment timestamp
+import moment from 'moment';
+
+// Sweet Alert
+import Swal from 'sweetalert2';
+window.Swal = Swal;
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +31,14 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Admin Dashboard
+import NotFound from './components/NotFound';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import AdminContestants from "./components/Admin/Contestants/AdminContestants";
+import AdminContestantForm from "./components/Admin/Contestants/AdminContestantForm";
+import AdminPayments from "./components/Admin/Payments/AdminPayments";
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +46,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+createApp({
+    components: {
+        NotFound,
+
+        AdminDashboard,
+
+        AdminContestants,
+        AdminContestantForm,
+
+        AdminPayments,
+    }
+}).use(router, axios, VueAxios).mount('#app');

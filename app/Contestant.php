@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Vote;
+use Illuminate\Database\Eloquent\Model;
 
 class Contestant extends Model
 {
@@ -11,14 +11,19 @@ class Contestant extends Model
         'name',
         'slug',
         'image',
-        'votes',
     ];
 
-    public function votes(){
-        return $this->hasMany(Vote::class);
+    public function votes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Vote::class, 'contestant_id', 'id');
     }
 
-    public function payments(){
-        return $this->hasMany(Payment::class);
+    public function payments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Payment::class, 'contestant_id', 'id');
+    }
+
+    public function contestant_votes(){
+        return $this->votes()->sum('amount');
     }
 }

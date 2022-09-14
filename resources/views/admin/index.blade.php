@@ -1,109 +1,110 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('title')
-    Dashboard
-    @stop
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-@section('content')
-    <div class="container">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        window.Laravel = { csrfToken: '{{ csrf_token() }}' };
+    </script>
 
-        <div class="row justify-content-center">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">Total Applications</div>
+    <!-- favicon icon -->
+    <link rel="shortcut icon" href="{{ asset('main/lmdn_logo_500.png') }}" />
 
-                    <div class="card-body">
-                       {{ $countAllApplications }}
-                    </div>
-                </div>
-            </div>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">Paid Applications</div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-                    <div class="card-body">
-                        {{ $countPaidApplications }}
-                    </div>
+    <!-- Styles -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
 
-                </div>
-            </div>
 
-        </div>
+</head>
+<body>
 
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-12">
+<div id="app">
 
-                @include('includes.alerts')
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ asset('main/lmdn_logo_500.png') }}" width="80"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li>
+                        <router-link
+                            class="nav-link"
+                            exact
+                            :to="{ name: 'AdminDashboard'}">Dashboard
+                        </router-link>
+                    </li>
 
-                <table class="table">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">S/N</th>
-                        <th scope="col">Surname</th>
-                        <th scope="col">Othername</th>
-                        <th scope="col">Age</th>
-                        <th scope="col">Par Surname</th>
-                        <th scope="col">Par Other Names</th>
-                        <th scope="col">Par Mobile</th>
-                        <th scope="col">Par Email</th>
-                        <th scope="col">Payment Details</th>
-                        <th scope="col">Paid</th>
-                        <th scope="col">View</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                    <li class="nav-item">
+                        <router-link
+                            class="nav-link"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            exact
+                            :to="{ name: 'AdminContestants'}">Contestants
+                        </router-link>
+                    </li>
 
-                    @foreach($applications as $index => $application)
-                    <tr>
-                        <th scope="row">{{ $index + $applications->firstItem() }}</th>
-                        <td>{{ $application->surname }}</td>
-                        <td>{{ $application->othernames }}</td>
-                        <td>{{ $application->age }}</td>
-                        <td>{{ $application->parent_surname }}</td>
-                        <td>{{ $application->parent_othernames }}</td>
-                        <td>{{ $application->parent_mobile }}</td>
-                        <td>{{ $application->parent_email }}</td>
-                        <td>{{ $application->payment_details }}</td>
-                        <td>
-                            @if($application->paid)
-                                <p class="text-success"><strong>PAID</strong></p>
-                                <form method="POST" action="{{ action('ApplicationController@approve', $application->id) }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-warning btn-md">
-                                        Disapprove
-                                    </button>
-                                </form>
-                            @else
-                                <p class="text-danger"><strong>PENDING</strong></p>
-                                <form method="POST" action="{{ action('ApplicationController@approve', $application->id) }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-success btn-md">
-                                        Approve
-                                    </button>
-                                </form>
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('applications.show', $application->id) }}">
-                                <button class="btn btn-warning btn-md">View</button>
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
+                    <li class="nav-item">
+                        <router-link
+                            class="nav-link"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            exact
+                            :to="{ name: 'AdminAddContestant'}">Add Contestants
+                        </router-link>
+                    </li>
 
-                    </tbody>
-                </table>
-            </div>
+                    <li class="nav-item">
+                        <router-link
+                            class="nav-link"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            :to="{ name: 'AdminPayments'}">Payments
+                        </router-link>
+                    </li>
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    {{ $applications->appends(Request::all())->links() }}
+                    <li class="nav-item">
+                        <router-link
+                            class="nav-link"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            exact
+                            :to="{ name: 'AdminLogout'}">Logout
+                        </router-link>
+                    </li>
                 </ul>
-            </nav>
 
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
         </div>
+    </nav>
 
+    <div class="container">
+        <!--Vue Router View-->
+        <router-view></router-view>
     </div>
-@endsection
+
+</div>
+
+</body>
+</html>
