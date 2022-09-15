@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GithubDeploymentController;
 use App\Http\Controllers\Home\Contestant\HomeContestantController;
+use App\Http\Controllers\Home\Payment\HomePaymentController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -39,18 +40,15 @@ Auth::routes();
 
 // Contestants
 Route::get('/', [HomeContestantController::class, 'index'])->name('contestant.index');
-Route::get('/contestant/{slug}/show', [HomeContestantController::class, 'show'])->name('contestant.show');
-
-// Bank Payments
-Route::post('contestant/bank-payment/{id}', ['uses' => 'ContestantController@bankForm']);
+Route::get('/contestant/{slug}', [HomeContestantController::class, 'show'])->name('contestant.show');
 
 // Paystack Payments
-Route::post('contestant/paystack/{id}', ['uses' => 'ContestantController@paystackForm']);
-Route::get('contestant/paystack-payment/{slug}', ['uses' => 'ContestantController@paystackPayment']);
-Route::get('contestants/voting-complete', 'ContestantController@votingComplete');
-
-Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
-Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+Route::get('/payments/contestant/{slug}/paystack', [HomePaymentController::class, 'payStackForm']);
+Route::post('/pay', [HomePaymentController::class, 'redirectToGateway'])->name('pay');
+Route::get('/payment/callback', [HomePaymentController::class, 'handleGatewayCallback']);
+Route::get('/payments/complete', static function () {
+    return view('contestants.voting-complete');
+})->name('payments.complete');
 
 // Admin Account SPA
 Route::get('/admin/{any}', static function () {
@@ -59,8 +57,6 @@ Route::get('/admin/{any}', static function () {
 
 //Github Deployment
 Route::post('/github/deploy', [GithubDeploymentController::class, 'deploy']);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Cache clearing Routes
 //Clear route cache:

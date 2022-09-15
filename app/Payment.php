@@ -10,11 +10,11 @@ class Payment extends Model
     protected $fillable = [
         'contestant_id',
         'email',
-        'accname',
+        'name',
         'accnum',
         'bank',
         'amount',
-        'votes',
+        'quantity',
         'payment_method',
         'status'
     ];

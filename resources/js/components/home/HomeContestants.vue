@@ -46,7 +46,7 @@
                     <label class="col-md-8">
                         <i class="ti ti-user"></i>
                         <span class="ttm-form-control">
-                                <input class="text-input" v-model="form.name" type="text"
+                                <input class="text-input" v-model="form.term" type="text"
                                        placeholder="Search Contestants" required="required"></span>
                     </label>
 
@@ -185,6 +185,7 @@
                         console.log(this.form);
                         if(response.data.success === true){
                             this.contestants = response.data.contestants;
+                            this.total = response.data.total;
                             this.search_values = response.data.search_values;
                         }else{
                             console.log(response.data.message);

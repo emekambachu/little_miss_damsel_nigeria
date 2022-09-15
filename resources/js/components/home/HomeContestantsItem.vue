@@ -16,13 +16,13 @@
                 <div class="featured-title">
                     <h5>
                         <a style="color: #AF0558;"
-                           :href="'/contestant/'+user.slug+'/show'">{{ user.name }}</a>
+                           :href="'/contestant/'+user.slug">{{ user.name }}</a>
                     </h5>
                 </div>
                 <div class="post-desc-footer">
                     <a style="color: #AF0558;"
                        class="ttm-btn btn-inline ttm-icon-btn-right ttm-btncolor-black"
-                       :href="'/contestant/'+user.slug+'/show'">
+                       :href="'/contestant/'+user.slug">
                         Vote<i class="ti ti-arrow-right"></i>
                     </a>
                 </div>
@@ -32,15 +32,13 @@
 </template>
 
 <script>
-import moment from "moment";
-
 export default {
     props: {
         user: Object
     },
     data() {
         return {
-            deleted: false,
+
         }
     },
     methods: {

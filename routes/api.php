@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Contestant\AdminContestantController;
 use App\Http\Controllers\Admin\Payment\AdminPaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Home\Contestant\HomeContestantController;
+use App\Http\Controllers\Home\Payment\HomePaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,12 @@ use Illuminate\Support\Facades\Route;
 // Contestants
 Route::get('/home/contestants', [HomeContestantController::class, 'contestants']);
 Route::get('/home/contestants/{slug}/show', [HomeContestantController::class, 'showContestant']);
-Route::post('/home/contestants/search', [AdminContestantController::class, 'search']);
+Route::post('/home/contestants/search', [HomeContestantController::class, 'search']);
+
+// Payments
+Route::post('/home/contestants/{slug}/payment/bank', [HomePaymentController::class, 'payWithBank']);
+Route::post('/home/contestants/{slug}/payment/online', [HomePaymentController::class, 'payOnline']);
+Route::get('/payment/callback', [HomePaymentController::class, 'handleGatewayCallback']);
 
 // Sanctum middleware group
 Route::middleware('auth:sanctum')->group(function () {

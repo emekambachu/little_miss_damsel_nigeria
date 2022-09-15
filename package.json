@@ -25,12 +25,13 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.21.2",
-        "vue-axios": "^3.4.1",
-        "vue-router": "^4.0.14",
-        "sweetalert2": "^11.4.8",
-        "vue-sweetalert2": "^5.0.2",
-        "vue-content-loader": "^2.0.1",
         "laravel-vue-pagination": "^3.0.0",
-        "moment": "^2.29.1"
+        "moment": "^2.29.1",
+        "sweetalert2": "^11.4.8",
+        "vue-axios": "^3.4.1",
+        "vue-content-loader": "^2.0.1",
+        "vue-paystack": "^2.0.4",
+        "vue-router": "^4.0.14",
+        "vue-sweetalert2": "^5.0.2"
     }
 }

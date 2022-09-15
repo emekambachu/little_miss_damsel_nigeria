@@ -15,7 +15,11 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', static function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->integer('contestant_id')->index()->unsigned()->nullable();
+            $table->integer('contestant_id')->index()->unsigned();
+            $table->integer('payment_id')->index()->unsigned();
+            $table->text('ip')->nullable();
+            $table->decimal('amount');
+            $table->bigInteger('quantity');
             $table->timestamps();
         });
     }

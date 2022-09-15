@@ -17,11 +17,10 @@ class CreatePaymentsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('contestant_id')->index()->unsigned()->nullable();
             $table->string('email');
-            $table->string('accname');
-            $table->string('accnum')->nullable();
+            $table->string('name');
             $table->string('bank')->nullable();
             $table->integer('amount');
-            $table->integer('votes');
+            $table->integer('quantity');
             $table->string('payment_method');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

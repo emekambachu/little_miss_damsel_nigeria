@@ -2,14 +2,22 @@
 
 namespace App\Services\Payment;
 
+use App\Contestant;
 use App\Payment;
+use App\Services\Contestant\ContestantService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Class PaymentService.
  */
 class PaymentService
 {
+    protected $contestant;
+    public function __construct(ContestantService $contestant){
+        $this->contestant = $contestant;
+    }
+
     public function payment(): Payment
     {
         return new Payment();
@@ -86,5 +94,52 @@ class PaymentService
             'sum' => 0,
             'search_values' => $searchValues
         ];
+    }
+
+    public function storeCardUserDetails($request): void
+    {
+        $input = $request->all();
+        Session::put('contestant_id', $input['contestant_id']);
+        Session::put('name', $input['name']);
+        Session::put('email', $input['email']);
+        Session::put('quantity', $input['quantity']);
+        Session::put('amount', $input['quantity'] * 50);
+        Session::put('payment_method', $input['payment_method']);
+    }
+
+    public function storeCardPayment($paymentDetails): void
+    {
+        if($paymentDetails['data']['status'] === 'success'){
+            // Store payment
+            $payment_successful = $this->payment()->create([
+                'contestant_id' => $paymentDetails['data']['metadata']['contestant_id'],
+                'name' => $paymentDetails['data']['metadata']['name'],
+                'email' => $paymentDetails['data']['customer']['email'],
+                'amount' => $paymentDetails['data']['metadata']['amount'],
+                'quantity' => $paymentDetails['data']['metadata']['quantity'],
+                'payment_method' => $paymentDetails['data']['metadata']['payment_method'],
+                'status' => 1,
+            ]);
+
+            // Store votes
+            if($payment_successful){
+                $this->storeVotes($payment_successful);
+                Session::flush();
+            }
+        }
+    }
+
+    public function storeVotes($payment_successful): void
+    {
+        $this->contestant->vote()->create([
+           'payment_id' => $payment_successful->id,
+           'contestant_id' => $payment_successful->contestant_id,
+           'amount' => $payment_successful->amount,
+           'quantity' => $payment_successful->quantity,
+        ]);
+    }
+
+    public function storeBankPayment($request){
+
     }
 }

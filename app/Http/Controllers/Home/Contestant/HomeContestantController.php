@@ -44,7 +44,17 @@ class HomeContestantController extends Controller
     }
 
     public function show($slug){
-        return view('contestants.show', compact('slug'));
+
+        try {
+            $contestant = $this->contestant->contestantBySlug($slug);
+            return view('contestants.show', compact('contestant'));
+
+        } catch (\Exception $e) {
+            Session::flash('error', $e->getMessage());
+            return redirect()->back();
+        }
+
+
     }
 
     public function showContestant($slug): \Illuminate\Http\JsonResponse
@@ -85,10 +95,6 @@ class HomeContestantController extends Controller
 
         $con = Contestant::where('slug', $slug)->get()->first();
         return view('contestants.paystack-payment', compact('con'));
-    }
-
-    public function votingComplete(){
-        return view('contestants.voting-complete');
     }
 
     public function bankForm(Request $request, $id){

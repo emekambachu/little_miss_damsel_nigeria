@@ -33,6 +33,7 @@ window.Swal = Swal;
 
 // Home Contestants
 import HomeContestants from "./components/home/HomeContestants";
+import HomeContestantShow from "./components/home/HomeContestantShow";
 
 // Admin Dashboard
 import NotFound from './components/NotFound';
@@ -54,6 +55,7 @@ createApp({
         NotFound,
 
         HomeContestants,
+        HomeContestantShow,
 
         AdminDashboard,
 
