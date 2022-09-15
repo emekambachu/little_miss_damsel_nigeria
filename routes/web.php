@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GithubDeploymentController;
 use App\Http\Controllers\Home\Contestant\HomeContestantController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,29 +23,23 @@ Auth::routes();
 //    return view('contestants.index');
 //});
 
-Route::get('fashion-exhibition', static function () {
-    return view('fashion-exhibition');
-});
+//Route::get('fashion-exhibition', static function () {
+//    return view('fashion-exhibition');
+//});
+//
+//Route::get('registration', static function () {
+//    return view('registration');
+//});
+//
+//Route::get('contact', static function () {
+//    return view('contact');
+//});
+//
+//Route::post('submit-contact', 'WebsiteController@contactForm');
 
-Route::get('registration', static function () {
-    return view('registration');
-});
-
-Route::get('contact', static function () {
-    return view('contact');
-});
-
-Route::post('submit-contact', 'WebsiteController@contactForm');
-
-
-Route::get('/', [HomeContestantController::class, 'index'])->name('home.index');
-
-// Contestant Controllers
-Route::resource('vote-contestants', 'ContestantController');
-Route::get('contestant/{slug}',
-    ['as'=>'view-contestant', 'uses'=>'ContestantController@view']);
-
-Route::get('contestants/search', ['uses' => 'ContestantController@search']);
+// Contestants
+Route::get('/', [HomeContestantController::class, 'index'])->name('contestant.index');
+Route::get('/contestant/{slug}/show', [HomeContestantController::class, 'show'])->name('contestant.show');
 
 // Bank Payments
 Route::post('contestant/bank-payment/{id}', ['uses' => 'ContestantController@bankForm']);

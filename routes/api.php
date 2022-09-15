@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Contestants
+Route::get('/home/contestants', [HomeContestantController::class, 'contestants']);
+Route::get('/home/contestants/{slug}/show', [HomeContestantController::class, 'showContestant']);
+Route::post('/home/contestants/search', [AdminContestantController::class, 'search']);
+
 // Sanctum middleware group
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -51,6 +56,3 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/admin/logout', [LoginController::class, 'logout']);
 });
-
-Route::get('/contestants', [HomeContestantController::class, 'index']);
-Route::get('/contestants/{id}/show', [HomeContestantController::class, 'show']);

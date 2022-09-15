@@ -31,6 +31,9 @@ window.Swal = Swal;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+// Home Contestants
+import HomeContestants from "./components/home/HomeContestants";
+
 // Admin Dashboard
 import NotFound from './components/NotFound';
 import AdminDashboard from './components/Admin/AdminDashboard';
@@ -49,6 +52,8 @@ import AdminPayments from "./components/Admin/Payments/AdminPayments";
 createApp({
     components: {
         NotFound,
+
+        HomeContestants,
 
         AdminDashboard,
 

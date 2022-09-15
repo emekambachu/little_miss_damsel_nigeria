@@ -5,11 +5,16 @@ namespace App\Http\Controllers\Home\Contestant;
 use App\Contestant;
 use App\Http\Controllers\Controller;
 use App\Payment;
+use App\Services\Contestant\ContestantService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class HomeContestantController extends Controller
 {
+    private $contestant;
+    public function __construct(ContestantService $contestant){
+        $this->contestant = $contestant;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,20 +22,50 @@ class HomeContestantController extends Controller
      */
     public function index()
     {
-        $contestants = Contestant::orderBy('created_at', 'desc')->paginate(15);
-        return view('contestants.index', compact('contestants'));
+        return view('contestants.index');
     }
 
-    public function view($slug){
-        $con = Contestant::where('slug', $slug)->get()->first();
+    public function contestants(): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $contestants = $this->contestant->contestantWithRelations()
+                ->latest()->paginate(10);
+            return response()->json([
+                'success' => true,
+                'contestants' => $contestants,
+                'total' => $contestants->total(),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
 
-        return view('contestants.show', compact('con'));
+    public function show($slug){
+        return view('contestants.show', compact('slug'));
+    }
+
+    public function showContestant($slug): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $contestant = $this->contestant->contestantBySlug($slug);
+            return response()->json([
+                'success' => true,
+                'contestant' => $contestant,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 
     public function paystackForm(Request $request, $id){
 
         $input = $request->all();
-
         $con = Contestant::find($id);
 
         $cost = ($input['votes'] * 50) * 100;
@@ -49,7 +84,6 @@ class HomeContestantController extends Controller
     public function paystackPayment($slug){
 
         $con = Contestant::where('slug', $slug)->get()->first();
-
         return view('contestants.paystack-payment', compact('con'));
     }
 
@@ -60,9 +94,7 @@ class HomeContestantController extends Controller
     public function bankForm(Request $request, $id){
 
         $input = $request->all();
-
         $con = Contestant::find($id);
-
         $input['amount'] = $input['votes'] * 50;
         $input['contestant_id'] = $con->id;
         $input['payment_method'] = 'bank-payment';
@@ -74,100 +106,24 @@ class HomeContestantController extends Controller
         return redirect()->back();
     }
 
-    public function search(Request $request){
+    public function search(Request $request): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $contestants = $this->contestant->searchContestant($request);
+            return response()->json([
+                'success' => true,
+                'contestants' => $contestants['contestants'],
+                'total' => $contestants['total'],
+                'search_values' => $contestants['search_values'],
+            ]);
 
-        $input = $request->input('name');
-
-        // Using Like and foreach search
-        $searchValues = explode(' ', $input);
-
-        $contestants = Contestant::where(static function($query) use($searchValues){
-
-            foreach ($searchValues as $value) {
-                $query->where('contestants.name', 'LIKE', '%' . $value . '%');
-            }
-
-        })->paginate(15);
-
-        // get total results
-        if($contestants->total() > 0){
-            $countResults = $contestants->total();
-        }else {
-            $countResults = 0;
-            $emptyResult = $request->input('name');
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
         }
-
-        if($contestants->first()){
-            return view('contestants.search-results',
-                compact( 'countResults', 'contestants'));
-        }
-        return view('contestants.search-results',
-            compact( 'countResults', 'contestants', 'emptyResult'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Contestant  $contestant
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contestant $contestant)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Contestant  $contestant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contestant $contestant)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contestant  $contestant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contestant $contestant)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Contestant  $contestant
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contestant $contestant)
-    {
-        //
-    }
 }

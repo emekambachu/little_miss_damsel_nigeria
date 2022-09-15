@@ -33,6 +33,10 @@ class ContestantService
         return $this->contestantWithRelations()->findOrFail($id);
     }
 
+    public function contestantBySlug($slug){
+        return $this->contestantWithRelations()->where('slug', $slug)->first();
+    }
+
     public function storeContestant($request){
 
         $input = $request->all();
@@ -48,7 +52,7 @@ class ContestantService
 
         if($file = $request->file('image')){
             // path for converted image
-            $converted_path = 'photos';
+            $path = 'photos';
             // Add current time in seconds to file name
             $name = time() . $file->getClientOriginalName();
             // create canvas background to hold the image (Must install Image Intervention Package first)
@@ -63,7 +67,7 @@ class ContestantService
             });
             // insert image to canvas
             $background->insert($convert_image, 'center');
-            $background->save($converted_path.'/'.$name);
+            $background->save($path.'/'.$name);
             //assign image name to $input array
             return $name;
         }
