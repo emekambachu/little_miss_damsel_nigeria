@@ -134,11 +134,11 @@ class PaymentService
     public function confirmBankPayment($id): array
     {
         $payment = $this->paymentById($id);
-        if($payment->status === 1){
-            $payment->status = 0;
+        if($payment->status === 'confirmed'){
+            $payment->status = 'pending';
             $message = 'Payment Suspended';
         }else{
-            $payment->status = 1;
+            $payment->status = 'confirmed';
             $message = 'Payment Approved';
         }
         $payment->save();

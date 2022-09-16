@@ -23579,7 +23579,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       deleted: false,
-      payment_status: this.payment.status === 1 ? 1 : 0
+      payment_status: this.payment.status
     };
   },
   methods: {
@@ -23643,7 +23643,7 @@ __webpack_require__.r(__webpack_exports__);
 
       // Install sweetalert2 to use
       Swal.fire({
-        html: this.payment_status === 1 ? "<h3>Suspend Payment</h3>" : "<h3>Confirm Payment</h3>",
+        html: this.payment_status === 'confirmed' ? "<h3>Suspend Payment</h3>" : "<h3>Confirm Payment</h3>",
         showDenyButton: true,
         showCancelButton: false,
         confirmButtonText: 'Yes',
@@ -23678,7 +23678,7 @@ __webpack_require__.r(__webpack_exports__);
               });
               Toast.fire({
                 icon: 'success',
-                title: _this2.payment_status === 1 ? 'Payment Confirmed' : 'Payment Suspended'
+                title: response.data.payment.status === 'confirmed' ? 'Payment Confirmed' : 'Payment Suspended'
               });
               _this2.payment_status = response.data.payment.status;
             }
@@ -26122,14 +26122,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Amount: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.amount), 1
   /* TEXT */
-  ), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_hoisted_7, $data.payment_status === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, "Confirmed")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, "Pending"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [$props.payment.payment_method === 'bank' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  ), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_hoisted_7, $data.payment_status === 'confirmed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, "Confirmed")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, "Pending"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [$props.payment.payment_method === 'bank' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.confirmPayment($props.payment.id);
     }),
     type: "button",
     "class": "btn btn-primary mr-2"
-  }, [$data.payment_status === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, " Suspend Payment")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, "Confirm Payment"))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <button @click=\"deletePayment(payment.id)\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    type=\"button\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    class=\"btn btn-danger mr-2\">Deleted</button>")])]);
+  }, [$data.payment_status === 'confirmed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, " Suspend Payment")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, "Confirm Payment"))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <button @click=\"deletePayment(payment.id)\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    type=\"button\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    class=\"btn btn-danger mr-2\">Deleted</button>")])]);
 }
 
 /***/ }),

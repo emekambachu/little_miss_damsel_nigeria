@@ -14,7 +14,7 @@
             Amount: {{ payment.amount }}<br>
         </td>
         <td>
-            Status: <span class="p-1 bg-success text-white" v-if="payment_status === 1">Confirmed</span>
+            Status: <span class="p-1 bg-success text-white" v-if="payment_status === 'confirmed'">Confirmed</span>
             <span class="p-1 bg-danger text-white" v-else>Pending</span>
         </td>
         <td>
@@ -22,7 +22,7 @@
                     @click="confirmPayment(payment.id)"
                     type="button"
                     class="btn btn-primary mr-2">
-                <span v-if="payment_status === 1">
+                <span v-if="payment_status === 'confirmed'">
                     Suspend Payment</span>
                 <span v-else>Confirm Payment</span>
             </button>
@@ -44,7 +44,7 @@ export default {
     data() {
         return {
             deleted: false,
-            payment_status: this.payment.status === 1 ? 1 : 0,
+            payment_status: this.payment.status,
         }
     },
     methods: {
@@ -106,7 +106,7 @@ export default {
         confirmPayment(id) {
             // Install sweetalert2 to use
             Swal.fire({
-                html: this.payment_status === 1 ? "<h3>Suspend Payment</h3>" : "<h3>Confirm Payment</h3>",
+                html: this.payment_status === 'confirmed' ? "<h3>Suspend Payment</h3>" : "<h3>Confirm Payment</h3>",
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: 'Yes',
@@ -141,7 +141,7 @@ export default {
                                 });
                                 Toast.fire({
                                     icon: 'success',
-                                    title: this.payment_status === 1 ? 'Payment Confirmed' : 'Payment Suspended',
+                                    title: response.data.payment.status === 'confirmed' ? 'Payment Confirmed' : 'Payment Suspended',
                                 });
                                 this.payment_status = response.data.payment.status;
                             }
