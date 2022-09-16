@@ -14,7 +14,7 @@
             Amount: {{ payment.amount }}<br>
         </td>
         <td>
-            Status: <span class="p-1 bg-success text-white" v-if="payment_status">Confirmed</span>
+            Status: <span class="p-1 bg-success text-white" v-if="payment_status === 1">Confirmed</span>
             <span class="p-1 bg-danger text-white" v-else>Pending</span>
         </td>
         <td>
@@ -44,7 +44,7 @@ export default {
     data() {
         return {
             deleted: false,
-            payment_status: this.payment.status,
+            payment_status: this.payment.status === 1 ? 1 : 0,
         }
     },
     methods: {
