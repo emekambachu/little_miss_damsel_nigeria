@@ -9,7 +9,7 @@
             </td>
             <td>{{ votes }}</td>
             <td>
-                <button @click="deleteContestant(user.id)" type="button" class="btn btn-danger mr-2">Deleted</button>
+                <button @click="deleteContestant(user.id)" type="button" class="btn btn-danger mr-2">Delete</button>
                 <router-link :to="{ name: 'AdminEditContestant', params: { id: user.id }}">
                     <button type="button" class="btn btn-warning">Edit</button>
                 </router-link>
