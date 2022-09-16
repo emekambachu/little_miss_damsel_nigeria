@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-header">Sum Votes</div>
                 <div class="card-body">
-                    {{ sum_votes }}
+                    ₦{{ sum_votes }}
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="card">
                 <div class="card-header">Sum Completed Payments</div>
                 <div class="card-body">
-                    {{ sum_completed_payments }}
+                    ₦{{ sum_completed_payments }}
                 </div>
             </div>
         </div>

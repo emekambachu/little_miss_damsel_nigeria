@@ -7,7 +7,7 @@
                 Name: {{ user.name }}<br>
                 Date Created: {{ fullDate(user.created_at) }}
             </td>
-            <td>{{ user.contestant_votes }}</td>
+            <td>{{ votes }}</td>
             <td>
                 <button @click="deleteContestant(user.id)" type="button" class="btn btn-danger mr-2">Deleted</button>
                 <router-link :to="{ name: 'AdminEditContestant', params: { id: user.id }}">
@@ -28,11 +28,20 @@ export default {
     data() {
         return {
             deleted: false,
+            votes: 0,
         }
     },
     methods: {
         fullDate(value) {
             return moment(value).format('MMMM Do YYYY, h:mm:ss a');
+        },
+
+        getTotalVotes(userVotes){
+            let totalVotes = 0;
+            userVotes.forEach((item, index)=>{
+                totalVotes += item;
+            });
+            return totalVotes;
         },
 
         deleteContestant(id) {
@@ -88,7 +97,7 @@ export default {
     },
 
     mounted() {
-
+        this.votes = this.getTotalVotes(this.user.votes);
     }
 }
 </script>

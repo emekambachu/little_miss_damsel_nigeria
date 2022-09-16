@@ -106,7 +106,7 @@
 
                                                 <strong>Voting reflects after 4 hours</strong>
                                             </p>
-                                            <form @submit.prevent="payBank" class="row contactform wrap-form clearfix">
+                                            <form v-if="!loading" @submit.prevent="payBank" class="row contactform wrap-form clearfix">
                                                 <label class="col-md-6 col-sm-12">
                                                     <i class="ti ti-user"></i>
                                                     <span class="ttm-form-control">

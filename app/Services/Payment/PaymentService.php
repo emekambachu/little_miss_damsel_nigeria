@@ -37,11 +37,11 @@ class PaymentService
         return $this->payment()
             ->select('email', DB::raw('count(*) as total'))
             ->groupBy('email')
-            ->get();
+            ->get()->count();
     }
 
     public function sumCompletedPayments(){
-        return $this->payment()->where('status', 'completed')->sum('amount');
+        return $this->payment()->where('status', 1)->sum('amount');
     }
 
     public function searchPayments($request): array

@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user('web');
     });
 
+    // Admin Dashboard
     Route::get('/admin/stats', [AdminAccountController::class, 'stats']);
 
     // Contestants

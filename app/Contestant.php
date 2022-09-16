@@ -22,8 +22,4 @@ class Contestant extends Model
     {
         return $this->hasMany(Payment::class, 'contestant_id', 'id');
     }
-
-    public function contestant_votes(){
-        return $this->votes()->sum('amount');
-    }
 }

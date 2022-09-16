@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 13, 2022 at 05:18 PM
+-- Generation Time: Sep 15, 2022 at 11:22 PM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `contestants` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `contestants`
@@ -155,8 +155,7 @@ INSERT INTO `contestants` (`id`, `image`, `slug`, `name`, `votes`, `created_at`,
 (29, '160053455429.jpg', 'oyinyechi-okechukwu', 'Oyinyechi Okechukwu', 0, '2020-09-19 15:55:57', '2020-09-19 15:55:57'),
 (30, '160053459130.jpg', 'cynthia-ugwuoke', 'Cynthia Ugwuoke', 0, '2020-09-19 15:56:34', '2020-09-19 15:56:34'),
 (31, '160053463031.jpg', 'angel-i-maurice', 'Angel I. Maurice', 0, '2020-09-19 15:57:13', '2020-09-19 15:57:13'),
-(32, '160053465232.jpg', 'jane-barika', 'Jane Barika', 0, '2020-09-19 15:57:35', '2020-09-19 15:57:35'),
-(33, '160053467333.jpg', 'wealth-ofem', 'Wealth Ofem', 0, '2020-09-19 15:57:56', '2020-09-19 15:57:56'),
+(56, '1663112680istockphoto-1190027469-612x612.jpg', 'ffffff', 'ffffff', 0, '2022-09-13 22:44:40', '2022-09-13 22:44:40'),
 (34, '160053469534.jpg', 'amadi-charish', 'Amadi Charish', 0, '2020-09-19 15:58:18', '2020-09-19 15:58:18'),
 (35, '160053471835.jpg', 'lucky-daniella-chioma', 'Lucky Daniella Chioma', 0, '2020-09-19 15:58:41', '2020-09-19 15:58:41'),
 (36, '160053481136.jpg', 'favour-chinedu', 'Favour Chinedu', 0, '2020-09-19 16:00:14', '2020-09-19 16:00:14'),
@@ -193,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -205,8 +204,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_11_14_125545_create_applications_table', 1),
 (5, '2019_07_31_150941_create_contestants_table', 2),
-(6, '2019_07_31_151402_create_votes_table', 2),
-(7, '2019_07_31_152443_create_payments_table', 2),
+(15, '2019_07_31_151402_create_votes_table', 7),
+(17, '2019_07_31_152443_create_payments_table', 8),
 (8, '2019_12_14_000001_create_personal_access_tokens_table', 3),
 (9, '2022_09_13_134344_create_sessions_table', 4);
 
@@ -263,19 +262,28 @@ DROP TABLE IF EXISTS `payments`;
 CREATE TABLE IF NOT EXISTS `payments` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `contestant_id` int(10) UNSIGNED DEFAULT NULL,
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accname` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `accnum` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bank` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` int(11) NOT NULL,
-  `votes` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `payment_method` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `payment_method` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `payments_contestant_id_index` (`contestant_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `contestant_id`, `email`, `name`, `bank`, `amount`, `quantity`, `payment_method`, `status`, `created_at`, `updated_at`) VALUES
+(1, 40, 'dd@fff.com', 'ddddddd', NULL, 150, 3, 'online', 1, '2022-09-15 21:38:28', '2022-09-15 21:38:28'),
+(2, 40, 'dd@fff.com', 'ddddddd', NULL, 150, 3, 'online', 1, '2022-09-15 21:38:31', '2022-09-15 21:38:31'),
+(3, 40, 'sss@email.com', 'fffffffff', NULL, 150, 3, 'online', 1, '2022-09-15 21:40:18', '2022-09-15 21:40:18'),
+(4, 40, 'ddd@email.com', 'ffffffffff', NULL, 150, 3, 'online', 1, '2022-09-15 21:46:57', '2022-09-15 21:46:57');
 
 -- --------------------------------------------------------
 
@@ -351,7 +359,9 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 ('bfj9OARnxuV2v0gbTpmlucVdOiv7ABDcxzFll8Wq', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVzI1cGpIaThxWUdsUW9pWjJKcnpEamJ6bnFzRVhaMHVpcVUwT2swcCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1663076764),
 ('iHqhNL5ID1jdsttLFuDlpqaMC92IBjXmPaFT9ZRL', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUm9wM3oyZDR2WVVtcVdxdXVYSVV2c0VBOVhIanYxWFlib2x2YXFhbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2xvZ2luIjt9fQ==', 1663076775),
-('cbRoyT2Rjb7edU6Q7UZfW02GpIMi59El2WdAMlq4', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNFBQM2hXRVRtdDNjeTdVNUtqcDJMRHRGRWdsc3hldTJqZHp4ZWxaeCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fX0=', 1663086684);
+('PDWmrhs0xcvD219uukwpYzkqYgrGDlGxKBw69jE6', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMjlnVDFMbk4wVGRjYmJNeldxbEFEbkgxcU9xY3l4STZUUE8zNnU3MSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jb250ZXN0YW50cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1663106203),
+('cbRoyT2Rjb7edU6Q7UZfW02GpIMi59El2WdAMlq4', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNFBQM2hXRVRtdDNjeTdVNUtqcDJMRHRGRWdsc3hldTJqZHp4ZWxaeCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6MTM6InNlYXJjaF9pbnB1dHMiO2E6Mjp7czo0OiJ0ZXJtIjtzOjI6ImFsIjtzOjQ6InBhZ2UiO3M6MjA6IltvYmplY3QgU3VibWl0RXZlbnRdIjt9czo1OiJpbWFnZSI7czo0NDoiMTY2MzExMjY4MGlzdG9ja3Bob3RvLTExOTAwMjc0NjktNjEyeDYxMi5qcGciO3M6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1663119066),
+('9J2tgm5aYYeWzx5vFS3Pg43R2e2N9sucgzT2PFYy', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTjl3TFVjUTYzcHFkZ29KS3BMdkxyTm1rV2VxM2pDQ0oyZUxmeERQciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jb250ZXN0YW50L2FkZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1663112008);
 
 -- --------------------------------------------------------
 
@@ -379,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Administrator', 'kidstarmodels@gmail.com', NULL, '$2y$12$Y9Ug0wdaA9nKITd7SrDzle21WLi0.7jsUm0CqsWcLRRkHouX48Cje', '7jicz6coSo9QEvxmzHtiw2j4dcKmcvkcYJaIwndMRqj7jb1OnGyrybLQB3XE', NULL, NULL, NULL);
+(1, 'Administrator', 'kidstarmodels@gmail.com', NULL, '$2y$12$Y9Ug0wdaA9nKITd7SrDzle21WLi0.7jsUm0CqsWcLRRkHouX48Cje', 'TQUG5vZtiQVmFV6AyO1poHZh1zjzPeYEo0MUefzI7chgrupesmZ10zBUNPd8', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -390,15 +400,25 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 DROP TABLE IF EXISTS `votes`;
 CREATE TABLE IF NOT EXISTS `votes` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `contestant_id` int(10) UNSIGNED DEFAULT NULL,
-  `email` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contestant_id` int(10) UNSIGNED NOT NULL,
+  `payment_id` int(10) UNSIGNED NOT NULL,
   `ip` text COLLATE utf8mb4_unicode_ci,
-  `amount` bigint(12) NOT NULL,
+  `amount` decimal(8,2) NOT NULL,
+  `quantity` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `votes_contestant_id_index` (`contestant_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `votes_contestant_id_index` (`contestant_id`),
+  KEY `votes_payment_id_index` (`payment_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `votes`
+--
+
+INSERT INTO `votes` (`id`, `contestant_id`, `payment_id`, `ip`, `amount`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 40, 3, NULL, '150.00', 3, '2022-09-15 21:40:18', '2022-09-15 21:40:18'),
+(2, 40, 4, NULL, '150.00', 3, '2022-09-15 21:46:57', '2022-09-15 21:46:57');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
