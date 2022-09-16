@@ -52,7 +52,7 @@ export default {
     },
 
     mounted() {
-        this.votes = this.getTotalVotes(this.user.votes);
+        this.votes = this.getTotalVotes(this.user.completed_payments);
     }
 }
 </script>

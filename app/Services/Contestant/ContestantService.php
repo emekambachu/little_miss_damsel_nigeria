@@ -26,7 +26,7 @@ class ContestantService
 
     public function contestantWithRelations(): \Illuminate\Database\Eloquent\Builder
     {
-        return $this->contestant()->with('votes', 'payments');
+        return $this->contestant()->with('votes', 'payments', 'completed_payments');
     }
 
     public function contestantById($id){

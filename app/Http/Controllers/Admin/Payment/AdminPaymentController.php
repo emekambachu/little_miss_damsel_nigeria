@@ -22,9 +22,10 @@ class AdminPaymentController extends Controller
     public function index(): \Illuminate\Http\JsonResponse
     {
         try {
-            $payments = $this->payment->paymentWithRelations()->has('contestant')
-                ->latest()->paginate(15);
-            $sum = $this->payment->paymentWithRelations()->sum('amount');
+            $payments = $this->payment->paymentWithRelations()
+                ->has('contestant')->latest()->paginate(15);
+            $sum = $this->payment->paymentWithRelations()
+                ->has('contestant')->sum('amount');
             return response()->json([
                 'success' => true,
                 'payments' => $payments,
@@ -62,6 +63,5 @@ class AdminPaymentController extends Controller
     public function destroy($id){
 
     }
-
 
 }

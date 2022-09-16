@@ -23,4 +23,8 @@ class Payment extends Model
     {
         return $this->belongsTo(Contestant::class, 'contestant_id', 'id');
     }
+
+    public function vote(){
+        return $this->hasOne(Vote::class, 'payment_id', 'id');
+    }
 }

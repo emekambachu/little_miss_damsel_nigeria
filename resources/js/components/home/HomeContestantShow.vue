@@ -106,7 +106,7 @@
 
                                                 <strong>Voting reflects after 4 hours</strong>
                                             </p>
-                                            <p class="p-2 bg-success text-white" v-if="success_message">
+                                            <p class="p-2 bg-success text-white" v-if="success_message !== ''">
                                                 {{ success_message }}
                                             </p>
                                             <form v-if="!loading" @submit.prevent="payBank" class="row contactform wrap-form clearfix">
