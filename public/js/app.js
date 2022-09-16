@@ -23578,7 +23578,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      deleted: false
+      deleted: false,
+      payment_status: this.payment.status
     };
   },
   methods: {
@@ -23636,7 +23637,61 @@ __webpack_require__.r(__webpack_exports__);
           return false;
         }
       });
-    }
+    },
+    confirmPayment: function confirmPayment(id) {
+      var _this2 = this;
+
+      // Install sweetalert2 to use
+      Swal.fire({
+        html: this.payment_status === 1 ? "<h3>Suspend Payment</h3>" : "<h3>Confirm Payment</h3>",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Yes',
+        denyButtonText: "No"
+      }).then(function (result) {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          // Loading
+          Swal.fire({
+            title: 'Please Wait !',
+            html: 'Confirming',
+            // add html attribute if you want or remove
+            allowOutsideClick: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            didOpen: function didOpen() {
+              Swal.showLoading();
+            }
+          });
+          axios.post('/api/admin/payments/' + id + '/confirm').then(function (response) {
+            if (response.data.success === true) {
+              var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 8000,
+                timerProgressBar: true,
+                didOpen: function didOpen(toast) {
+                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                  toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+              });
+              Toast.fire({
+                icon: 'success',
+                title: _this2.payment_status === 1 ? 'Payment Confirmed' : 'Payment Suspended'
+              });
+              _this2.payment_status = response.data.payment.status;
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        } else if (result.isDenied) {
+          return false;
+        }
+      });
+    },
+    paymentLoading: function paymentLoading() {},
+    paymentSuccess: function paymentSuccess() {}
   },
   mounted: function mounted() {}
 });
@@ -23740,6 +23795,11 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = true;
       axios.post('/api/home/contestants/' + this.contestant.slug + '/payment/bank', this.form_bank).then(function (response) {
         if (response.data.success === true) {
+          // Empty fields
+          _this2.form_bank['name'] = '';
+          _this2.form_bank['email'] = '';
+          _this2.form_bank['quantity'] = '';
+          _this2.form_bank['bank'] = '';
           _this2.loading = false;
           _this2.success_message = response.data.success_message;
         }
@@ -26006,9 +26066,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
-  key: 0
-};
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
@@ -26030,32 +26091,45 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Status: ");
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <button @click=\"deletePayment(payment.id)\""), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    type=\"button\""), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    class=\"btn btn-danger mr-2\">Deleted</button>")], -1
-/* HOISTED */
-);
-
+var _hoisted_8 = {
+  key: 0,
+  "class": "p-1 bg-success text-white"
+};
+var _hoisted_9 = {
+  key: 1,
+  "class": "p-1 bg-danger text-white"
+};
+var _hoisted_10 = {
+  key: 0
+};
+var _hoisted_11 = {
+  key: 1
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return !$data.deleted ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, " Name: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.contestant.name), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, " Name: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.contestant.name), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Name: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.name), 1
   /* TEXT */
-  ), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Email: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.email), 1
+  ), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Email: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.email), 1
   /* TEXT */
-  ), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Bank: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.bank), 1
+  ), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Bank: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.bank), 1
   /* TEXT */
-  ), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Payment_method: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.payment_method), 1
+  ), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Payment_method: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.payment_method), 1
   /* TEXT */
-  ), _hoisted_5]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Votes: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.quantity), 1
+  ), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Votes: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.quantity), 1
   /* TEXT */
-  ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Amount: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.amount), 1
+  ), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Amount: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.amount), 1
   /* TEXT */
-  ), _hoisted_7]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, " Status: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.payment.status === 1 ? 'Complete' : 'Pending'), 1
-  /* TEXT */
-  ), _hoisted_8])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
+  ), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [_hoisted_7, $data.payment_status === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, "Confirmed")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, "Pending"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [$props.payment.payment_method === 'bank' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 0,
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $options.confirmPayment($props.payment.id);
+    }),
+    type: "button",
+    "class": "btn btn-primary mr-2"
+  }, [$data.payment_status === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, " Suspend Payment")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, "Confirm Payment"))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <button @click=\"deletePayment(payment.id)\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    type=\"button\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    class=\"btn btn-danger mr-2\">Deleted</button>")])]);
 }
 
 /***/ }),

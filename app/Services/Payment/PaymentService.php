@@ -120,11 +120,7 @@ class PaymentService
                 'status' => 1,
             ]);
 
-            // Store votes
-            if($payment_successful){
-                $this->storeVotes($payment_successful);
-                Session::flush();
-            }
+            Session::flush();
         }
     }
 
@@ -132,9 +128,24 @@ class PaymentService
     {
         $input = $request->all();
         $input['amount'] = $input['quantity'] * 50;
-        $payment = $this->payment()->create($input);
-        $this->storeVotes($payment);
-        return $payment;
+        return $this->payment()->create($input);
+    }
+
+    public function confirmBankPayment($id): array
+    {
+        $payment = $this->paymentById($id);
+        if($payment->status === 1){
+            $payment->status = 0;
+            $message = 'Payment Suspended';
+        }else{
+            $payment->status = 1;
+            $message = 'Payment Approved';
+        }
+        $payment->save();
+        return [
+            'payment' => $payment,
+            'message' => $message,
+        ];
     }
 
     public function storeVotes($payment): void

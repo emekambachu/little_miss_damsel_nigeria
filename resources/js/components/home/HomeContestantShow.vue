@@ -237,6 +237,11 @@ export default {
             axios.post('/api/home/contestants/'+this.contestant.slug+'/payment/bank', this.form_bank)
                 .then((response) => {
                     if(response.data.success === true){
+                        // Empty fields
+                        this.form_bank['name'] = '';
+                        this.form_bank['email'] = '';
+                        this.form_bank['quantity'] = '';
+                        this.form_bank['bank'] = '';
                         this.loading = false;
                         this.success_message = response.data.success_message;
                     }

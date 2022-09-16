@@ -60,6 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Payments
     Route::get('/admin/payments', [AdminPaymentController::class, 'index']);
     Route::post('/admin/payments/search', [AdminPaymentController::class, 'search']);
+    Route::post('/admin/payments/{id}/confirm', [AdminPaymentController::class, 'confirmBankPayment']);
     Route::post('/admin/payments/{id}/delete', [AdminPaymentController::class, 'destroy']);
 
     Route::get('/admin/logout', [LoginController::class, 'logout']);

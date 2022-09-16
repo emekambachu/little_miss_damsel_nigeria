@@ -60,6 +60,24 @@ class AdminPaymentController extends Controller
         }
     }
 
+    public function confirmBankPayment($id): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $payment = $this->payment->confirmBankPayment($id);
+            return response()->json([
+                'success' => true,
+                'payment' => $payment['payment'],
+                'message' => $payment['message'],
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
     public function destroy($id){
 
     }

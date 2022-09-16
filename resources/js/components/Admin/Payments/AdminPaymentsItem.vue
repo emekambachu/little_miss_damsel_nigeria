@@ -1,5 +1,5 @@
 <template>
-    <tr v-if="!deleted">
+    <tr>
         <td>
             Name: {{ payment.contestant.name }}
         </td>
@@ -14,9 +14,18 @@
             Amount: {{ payment.amount }}<br>
         </td>
         <td>
-            Status: {{ payment.status === 1? 'Complete' : 'Pending' }}
+            Status: <span class="p-1 bg-success text-white" v-if="payment_status === 1">Confirmed</span>
+            <span class="p-1 bg-danger text-white" v-else>Pending</span>
         </td>
         <td>
+            <button v-if="payment.payment_method === 'bank'"
+                    @click="confirmPayment(payment.id)"
+                    type="button"
+                    class="btn btn-primary mr-2">
+                <span v-if="payment_status === 1">
+                    Suspend Payment</span>
+                <span v-else>Confirm Payment</span>
+            </button>
 <!--            <button @click="deletePayment(payment.id)"-->
 <!--                    type="button"-->
 <!--                    class="btn btn-danger mr-2">Deleted</button>-->
@@ -35,6 +44,7 @@ export default {
     data() {
         return {
             deleted: false,
+            payment_status: this.payment.status,
         }
     },
     methods: {
@@ -92,6 +102,65 @@ export default {
                 }
             });
         },
+
+        confirmPayment(id) {
+            // Install sweetalert2 to use
+            Swal.fire({
+                html: this.payment_status === 1 ? "<h3>Suspend Payment</h3>" : "<h3>Confirm Payment</h3>",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    // Loading
+                    Swal.fire({
+                        title: 'Please Wait !',
+                        html: 'Confirming',// add html attribute if you want or remove
+                        allowOutsideClick: false,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        },
+                    });
+                    axios.post('/api/admin/payments/'+ id +'/confirm')
+                        .then((response) => {
+                            if (response.data.success === true) {
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 8000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: this.payment_status === 1 ? 'Payment Confirmed' : 'Payment Suspended',
+                                });
+                                this.payment_status = response.data.payment.status;
+                            }
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                } else if (result.isDenied) {
+                    return false;
+                }
+            });
+        },
+
+        paymentLoading(){
+
+        },
+
+        paymentSuccess(){
+
+        }
     },
 
     mounted() {
