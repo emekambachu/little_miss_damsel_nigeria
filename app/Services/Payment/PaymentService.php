@@ -41,7 +41,7 @@ class PaymentService
     }
 
     public function sumCompletedPayments(){
-        return $this->payment()->where('status', 1)->sum('amount');
+        return $this->payment()->where('status', 'confirmed')->sum('amount');
     }
 
     public function searchPayments($request): array
@@ -62,11 +62,16 @@ class PaymentService
             $searchValues['payment_method'] = $input['payment_method'];
         }
 
+//        if(!empty($input['payment_status'])) {
+//            $searchValues['payment_status'] = $input['payment_status'];
+//        }
+
         $allPayments = $this->paymentWithRelations()->where(function($query) use ($input){
             $query->when(!empty($input['term']), static function($q) use($input){
                 $q->where('email', 'like' , '%'. $input['term'] .'%')
                     ->where('name', 'like' , '%'. $input['term'] .'%')
                     ->where('bank', 'like' , '%'. $input['term'] .'%')
+                    ->where('status', 'like' , '%'. $input['term'] .'%')
                     ->where('payment_method', 'like' , '%'. $input['term'] .'%');
             });
 
@@ -117,7 +122,7 @@ class PaymentService
                 'amount' => $paymentDetails['data']['metadata']['amount'],
                 'quantity' => $paymentDetails['data']['metadata']['quantity'],
                 'payment_method' => $paymentDetails['data']['metadata']['payment_method'],
-                'status' => 1,
+                'status' => 'confirmed',
             ]);
 
             Session::flush();

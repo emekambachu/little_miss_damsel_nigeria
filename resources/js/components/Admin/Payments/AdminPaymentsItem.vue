@@ -11,7 +11,7 @@
         </td>
         <td>
             Votes: {{ payment.quantity }}<br>
-            Amount: {{ payment.amount }}<br>
+            Amount: ₦{{ payment.amount }}<br>
         </td>
         <td>
             Status: <span class="p-1 bg-success text-white" v-if="payment_status === 'confirmed'">Confirmed</span>
