@@ -8,7 +8,7 @@
             <div class="featured-bottom-content text-left position-relative">
                 <div class="ttm-box-post-date shape-rounded" style="background-color: #13071F;">
                     <span class="ttm-entry-date">
-                        <time style="font-size: 17px;" class="entry-date">{{ user.contestant_votes }}<br>
+                        <time style="font-size: 17px;" class="entry-date">{{ votes }}<br>
                             <span style="font-size: 10px;">Vote(s)</span>
                         </time>
                     </span>
@@ -38,15 +38,21 @@ export default {
     },
     data() {
         return {
-
+            votes: 0,
         }
     },
     methods: {
-
+        getTotalVotes(userVotes){
+            let totalVotes = 0;
+            userVotes.forEach((item, index)=>{
+                totalVotes += item.quantity;
+            });
+            return totalVotes;
+        },
     },
 
     mounted() {
-
+        this.votes = this.getTotalVotes(this.user.votes);
     }
 }
 </script>

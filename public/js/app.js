@@ -23860,10 +23860,22 @@ __webpack_require__.r(__webpack_exports__);
     user: Object
   },
   data: function data() {
-    return {};
+    return {
+      votes: 0
+    };
   },
-  methods: {},
-  mounted: function mounted() {}
+  methods: {
+    getTotalVotes: function getTotalVotes(userVotes) {
+      var totalVotes = 0;
+      userVotes.forEach(function (item, index) {
+        totalVotes += item.quantity;
+      });
+      return totalVotes;
+    }
+  },
+  mounted: function mounted() {
+    this.votes = this.getTotalVotes(this.user.votes);
+  }
 });
 
 /***/ }),
@@ -26904,7 +26916,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: "img"
   }, null, 8
   /* PROPS */
-  , _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("time", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.contestant_votes), 1
+  , _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("time", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.votes), 1
   /* TEXT */
   ), _hoisted_9, _hoisted_10])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     style: {
