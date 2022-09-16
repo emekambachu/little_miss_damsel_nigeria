@@ -21,15 +21,6 @@
 
         <div class="col-md-4 mb-2">
             <div class="card">
-                <div class="card-header">Sum Votes</div>
-                <div class="card-body">
-                    ₦{{ sum_votes }}
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-2">
-            <div class="card">
                 <div class="card-header">Sum Completed Payments</div>
                 <div class="card-body">
                     ₦{{ sum_completed_payments }}

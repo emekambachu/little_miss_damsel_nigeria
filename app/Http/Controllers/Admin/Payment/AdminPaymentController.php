@@ -24,8 +24,7 @@ class AdminPaymentController extends Controller
         try {
             $payments = $this->payment->paymentWithRelations()
                 ->has('contestant')->latest()->paginate(15);
-            $sum = $this->payment->paymentWithRelations()
-                ->has('contestant')->sum('amount');
+            $sum = $this->payment->sumCompletedPayments();
             return response()->json([
                 'success' => true,
                 'payments' => $payments,

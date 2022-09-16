@@ -21,14 +21,12 @@ class AdminAccountController extends Controller
     {
         try {
             $totalContestants = $this->contestant->contestant()->count();
-            $sumVotes = $this->contestant->vote()->sum('amount');
             $totalPayers = $this->payment->totalPayers();
             $sumCompletedPayments = $this->payment->sumCompletedPayments();
             return response()->json([
                 'success' => true,
                 'total_contestants' => $totalContestants,
                 'total_payers' => $totalPayers,
-                'sum_votes' => $sumVotes,
                 'sum_completed_payments' => $sumCompletedPayments,
             ]);
         } catch (\Exception $e) {

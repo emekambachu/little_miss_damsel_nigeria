@@ -41,7 +41,10 @@ class PaymentService
     }
 
     public function sumCompletedPayments(){
-        return $this->payment()->where('status', 'confirmed')->sum('amount');
+        return $this->paymentWithRelations()
+            ->has('contestant')
+            ->where('status', 'confirmed')
+            ->sum('amount');
     }
 
     public function searchPayments($request): array
