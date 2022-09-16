@@ -14,7 +14,7 @@
             Amount: {{ payment.amount }}<br>
         </td>
         <td>
-            Status: <span class="p-1 bg-success text-white" v-if="payment_status === 1">Confirmed</span>
+            Status: <span class="p-1 bg-success text-white" v-if="payment_status">Confirmed</span>
             <span class="p-1 bg-danger text-white" v-else>Pending</span>
         </td>
         <td>
