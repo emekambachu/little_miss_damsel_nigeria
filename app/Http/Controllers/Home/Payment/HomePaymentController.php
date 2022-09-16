@@ -50,8 +50,20 @@ class HomePaymentController extends Controller
         }
     }
 
-    public function payWithBank(PaymentVoteBankRequest $request){
-
+    public function payWithBank(PaymentVoteOnlineRequest $request){
+        try{
+            $payment = $this->payment->storeBankPayment($request);
+            return response()->json([
+                'payment' => $payment,
+                'success' => true,
+                'success_message' => "Your payment request has been successful, reflection wil be in 4 hours after payment has been confirmed",
+            ]);
+        }catch(\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 
     /**

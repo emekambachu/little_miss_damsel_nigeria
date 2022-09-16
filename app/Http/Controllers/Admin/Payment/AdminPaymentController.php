@@ -59,5 +59,9 @@ class AdminPaymentController extends Controller
         }
     }
 
+    public function destroy($id){
+
+    }
+
 
 }

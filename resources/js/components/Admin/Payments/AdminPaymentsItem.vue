@@ -4,23 +4,22 @@
             Name: {{ payment.contestant.name }}
         </td>
         <td>
+            Name: {{ payment.name }}<br>
             Email: {{ payment.email }}<br>
-            Account number: {{ payment.accnum }}<br>
-            Account Name: {{ payment.accname }}<br>
             Bank: {{ payment.bank }}<br>
             Payment_method: {{ payment.payment_method }}<br>
         </td>
         <td>
-            Votes: {{ payment.votes }}<br>
+            Votes: {{ payment.quantity }}<br>
             Amount: {{ payment.amount }}<br>
         </td>
         <td>
-            Status: {{ payment.votes }}
+            Status: {{ payment.status === 1? 'Complete' : 'Pending' }}
         </td>
         <td>
-            <button @click="deletePayment(payment.id)"
-                    type="button"
-                    class="btn btn-danger mr-2">Deleted</button>
+<!--            <button @click="deletePayment(payment.id)"-->
+<!--                    type="button"-->
+<!--                    class="btn btn-danger mr-2">Deleted</button>-->
         </td>
     </tr>
 </template>
@@ -46,7 +45,7 @@ export default {
         deletePayment(id) {
             // Install sweetalert2 to use
             Swal.fire({
-                html: "<h3>Delete <span class='text-success'>" + this.user.name + "s</span> records</h3>",
+                html: "<h3>Delete <span class='text-success'>" + this.payment.email + "s</span> records</h3>",
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: 'Yes',

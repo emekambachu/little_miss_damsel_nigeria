@@ -21,7 +21,7 @@
             <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Sum</div>
                 <div class="card-body">
-                    <h4 class="card-title">{{ sum }}</h4>
+                    <h4 class="card-title">₦{{ sum }}</h4>
                 </div>
             </div>
         </div>
@@ -38,8 +38,8 @@
                                    aria-label="Recipient's username" aria-describedby="button-addon2">
                             <select class="form-control" v-model="form.payment_method">
                                 <option value="">Select</option>
-                                <option value="card">Card</option>
-                                <option value="card">Bank</option>
+                                <option value="online">Online</option>
+                                <option value="bank">Bank</option>
                             </select>
                             <button class="btn btn-primary" type="submit"
                                     id="button-addon2">Search</button>

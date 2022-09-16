@@ -106,12 +106,15 @@
 
                                                 <strong>Voting reflects after 4 hours</strong>
                                             </p>
+                                            <p class="p-2 bg-success text-white" v-if="success_message">
+                                                {{ success_message }}
+                                            </p>
                                             <form v-if="!loading" @submit.prevent="payBank" class="row contactform wrap-form clearfix">
                                                 <label class="col-md-6 col-sm-12">
                                                     <i class="ti ti-user"></i>
                                                     <span class="ttm-form-control">
                                                         <input class="text-input" v-model="form_bank.name"
-                                                               type="text" placeholder="Full Name (from bank)*"
+                                                               type="text" placeholder="Bank account name*"
                                                                required="required"></span>
                                                 </label>
 
@@ -119,14 +122,18 @@
                                                 <label class="col-md-12">
                                                     <i class="ti ti-user"></i>
                                                     <span class="ttm-form-control">
-                                                        <input class="text-input" v-model="form_bank.bankname" type="text" placeholder="Bank Name*"
+                                                        <input class="text-input"
+                                                               v-model="form_bank.bank"
+                                                               type="text" placeholder="Bank Name*"
                                                                required="required"></span>
                                                 </label>
 
                                                 <label class="col-md-12">
                                                     <i class="ti ti-email"></i>
                                                     <span class="ttm-form-control">
-                                                        <input class="text-input" v-model="form_bank.email" type="text" placeholder="Your email*"
+                                                        <input class="text-input"
+                                                               v-model="form_bank.email"
+                                                               type="email" placeholder="Your email*"
                                                                required="required"></span>
                                                 </label>
 
@@ -182,14 +189,16 @@ export default {
 
             form_bank:{
                 name: '',
-                bankname: '',
+                bank: '',
                 email: '',
                 quantity: '',
-                payment_method: 'bank'
+                payment_method: 'bank',
+                contestant_id: this.contestant.id,
             },
             errors: [],
             loading: false,
             bank_payment_complete: false,
+            success_message: '',
         }
     },
     methods: {
@@ -229,6 +238,7 @@ export default {
                 .then((response) => {
                     if(response.data.success === true){
                         this.loading = false;
+                        this.success_message = response.data.success_message;
                     }
                 }).catch((error) => {
                 console.log(error);

@@ -62,11 +62,10 @@ class PaymentService
             $searchValues['payment_method'] = $input['payment_method'];
         }
 
-        $payments = $this->paymentWithRelations()->where(function($query) use ($input){
+        $allPayments = $this->paymentWithRelations()->where(function($query) use ($input){
             $query->when(!empty($input['term']), static function($q) use($input){
                 $q->where('email', 'like' , '%'. $input['term'] .'%')
-                    ->where('accname', 'like' , '%'. $input['term'] .'%')
-                    ->where('accnum', 'like' , '%'. $input['term'] .'%')
+                    ->where('name', 'like' , '%'. $input['term'] .'%')
                     ->where('bank', 'like' , '%'. $input['term'] .'%')
                     ->where('payment_method', 'like' , '%'. $input['term'] .'%');
             });
@@ -75,8 +74,8 @@ class PaymentService
             return $q->where('payment_method', $input['payment_method']);
         });
 
-        $payments = $payments->paginate(15);
-        $sum = $payments->sum('amount');
+        $payments = $allPayments->paginate(15);
+        $sum = $allPayments->sum('amount');
 
         // if result exists return results, else return empty array
         if($payments->total() > 0){
@@ -129,17 +128,24 @@ class PaymentService
         }
     }
 
-    public function storeVotes($payment_successful): void
+    public function storeBankPayment($request)
+    {
+        $input = $request->all();
+        $input['amount'] = $input['quantity'] * 50;
+        $payment = $this->payment()->create($input);
+        $this->storeVotes($payment);
+        return $payment;
+    }
+
+    public function storeVotes($payment): void
     {
         $this->contestant->vote()->create([
-           'payment_id' => $payment_successful->id,
-           'contestant_id' => $payment_successful->contestant_id,
-           'amount' => $payment_successful->amount,
-           'quantity' => $payment_successful->quantity,
+           'payment_id' => $payment->id,
+           'contestant_id' => $payment->contestant_id,
+           'amount' => $payment->amount,
+           'quantity' => $payment->quantity,
         ]);
     }
 
-    public function storeBankPayment($request){
 
-    }
 }

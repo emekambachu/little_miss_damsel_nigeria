@@ -39,7 +39,7 @@ export default {
         getTotalVotes(userVotes){
             let totalVotes = 0;
             userVotes.forEach((item, index)=>{
-                totalVotes += item;
+                totalVotes += item.quantity;
             });
             return totalVotes;
         },
