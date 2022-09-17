@@ -11,12 +11,8 @@ class Contestant extends Model
         'name',
         'slug',
         'image',
+        'votes',
     ];
-
-    public function votes(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Vote::class, 'contestant_id', 'id');
-    }
 
     public function payments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

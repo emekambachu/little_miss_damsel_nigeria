@@ -118,7 +118,7 @@ class PaymentService
     {
         if($paymentDetails['data']['status'] === 'success'){
             // Store payment
-            $payment_successful = $this->payment()->create([
+            $payment = $this->payment()->create([
                 'contestant_id' => $paymentDetails['data']['metadata']['contestant_id'],
                 'name' => $paymentDetails['data']['metadata']['name'],
                 'email' => $paymentDetails['data']['customer']['email'],
@@ -128,6 +128,8 @@ class PaymentService
                 'status' => 'confirmed',
             ]);
 
+            // Update Contestant Votes
+            $this->updateContestantVotes($payment);
             Session::flush();
         }
     }
@@ -150,20 +152,25 @@ class PaymentService
             $message = 'Payment Approved';
         }
         $payment->save();
+
+        // update contestant votes
+        $this->updateContestantVotes($payment);
+
         return [
             'payment' => $payment,
             'message' => $message,
         ];
     }
 
-    public function storeVotes($payment): void
+    public function updateContestantVotes($payment): void
     {
-        $this->contestant->vote()->create([
-           'payment_id' => $payment->id,
-           'contestant_id' => $payment->contestant_id,
-           'amount' => $payment->amount,
-           'quantity' => $payment->quantity,
-        ]);
+        $contestant = $this->contestant->contestantById($payment->contestant_id);
+        if($payment->status === 'confirmed'){
+            $contestant->votes += $payment->quantity;
+        }else{
+            $contestant->votes -= $payment->quantity;
+        }
+        $contestant->save();
     }
 
 
