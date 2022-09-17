@@ -38,9 +38,13 @@ export default {
 
         getTotalVotes(userVotes){
             let totalVotes = 0;
-            userVotes.forEach((item, index)=>{
-                totalVotes += item.quantity;
-            });
+            for (let i = 0; i < userVotes.length; i++) {
+                totalVotes += userVotes[i].quantity;
+            }
+
+            // userVotes.forEach((item, index)=>{
+            //     totalVotes += item.quantity;
+            // });
             return totalVotes;
         },
 
@@ -97,7 +101,7 @@ export default {
     },
 
     mounted(){
-        if(this.user.completed_payments.length > 0){
+        if(this.user.completed_payments){
             this.votes = this.getTotalVotes(this.user.completed_payments);
         }
 

@@ -23397,9 +23397,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     getTotalVotes: function getTotalVotes(userVotes) {
       var totalVotes = 0;
-      userVotes.forEach(function (item, index) {
-        totalVotes += item.quantity;
-      });
+
+      for (var i = 0; i < userVotes.length; i++) {
+        totalVotes += userVotes[i].quantity;
+      } // userVotes.forEach((item, index)=>{
+      //     totalVotes += item.quantity;
+      // });
+
+
       return totalVotes;
     },
     deleteContestant: function deleteContestant(id) {
@@ -23456,7 +23461,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    if (this.user.completed_payments.length > 0) {
+    if (this.user.completed_payments) {
       this.votes = this.getTotalVotes(this.user.completed_payments);
     }
   }
