@@ -97,7 +97,7 @@ export default {
     },
 
     mounted(){
-        if(this.user.completed_payments){
+        if(this.user.completed_payments.length > 0){
             this.votes = this.getTotalVotes(this.user.completed_payments);
         }
 
