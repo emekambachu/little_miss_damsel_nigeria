@@ -96,8 +96,11 @@ export default {
         },
     },
 
-    mounted() {
-        this.votes = this.getTotalVotes(this.user.completed_payments);
+    mounted(){
+        if(this.user.completed_payments){
+            this.votes = this.getTotalVotes(this.user.completed_payments);
+        }
+
     }
 }
 </script>
