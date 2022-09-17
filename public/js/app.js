@@ -23826,17 +23826,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _HomeContestantsItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HomeContestantsItem */ "./resources/js/components/home/HomeContestantsItem.vue");
 /* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
-/* harmony import */ var vue_content_loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-content-loader */ "./node_modules/vue-content-loader/dist/vue-content-loader.es.js");
+/* harmony import */ var vue_content_loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-content-loader */ "./node_modules/vue-content-loader/dist/vue-content-loader.es.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vue3_clock_countdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue3-clock-countdown */ "./node_modules/vue3-clock-countdown/src/main.js");
+
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
+    Vue3CountdownClock: vue3_clock_countdown__WEBPACK_IMPORTED_MODULE_3__["default"],
     HomeContestantsItem: _HomeContestantsItem__WEBPACK_IMPORTED_MODULE_0__["default"],
     LaravelVuePagination: laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ContentLoader: vue_content_loader__WEBPACK_IMPORTED_MODULE_2__.ContentLoader,
-    BulletListLoader: vue_content_loader__WEBPACK_IMPORTED_MODULE_2__.BulletListLoader,
-    ListLoader: vue_content_loader__WEBPACK_IMPORTED_MODULE_2__.ListLoader
+    ContentLoader: vue_content_loader__WEBPACK_IMPORTED_MODULE_4__.ContentLoader,
+    BulletListLoader: vue_content_loader__WEBPACK_IMPORTED_MODULE_4__.BulletListLoader,
+    ListLoader: vue_content_loader__WEBPACK_IMPORTED_MODULE_4__.ListLoader
   },
   data: function data() {
     return {
@@ -23899,6 +23904,68 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getContestants();
+  },
+  setup: function setup() {
+    var deadLine = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('2022/10/25 24:00:00 GMT+1');
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('deadline', deadLine); // const Title = ref('Online service will be honored through:')
+    // provide('title', Title)
+
+    var timerStyle = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+      'text-align': 'center',
+      'font-family': 'sans-serif',
+      'font-weight': 100
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('timerStyle', timerStyle);
+    var h1Style = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+      color: '#99094f',
+      'font-weight': 100,
+      'font-size': '40px',
+      margin: '40px 0px 20px'
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('h1Style', h1Style);
+    var clockdiv = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+      'font-family': 'sans-serif',
+      color: '#fff',
+      display: 'inline-block',
+      'font-weight': 100,
+      'text-align': 'center',
+      'font-size': '30px'
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('clockdiv', clockdiv);
+    var clockdivDiv = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+      padding: '10px',
+      'border-radius': '3px',
+      background: '#99094f',
+      display: 'inline-block',
+      margin: '1px'
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('clockdivDiv', clockdivDiv);
+    var clockdivDivSpan = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+      padding: '15px',
+      'border-radius': '3px',
+      background: '#f53391',
+      display: 'inline-block'
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('clockdivDivSpan', clockdivDivSpan);
+    var styleEndTime = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+      color: '#fff'
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('styleEndTime', styleEndTime);
+    var smalltext = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
+      'padding-top': '5px',
+      'font-size': '16px'
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('smalltext', smalltext);
+    var titleDays = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('Days');
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('titleDays', titleDays);
+    var titleHours = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('Hours');
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('titleHours', titleHours);
+    var titleMinutes = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('Minutes');
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('titleMinutes', titleMinutes);
+    var titleSeconds = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('Seconds');
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('titleSeconds', titleSeconds);
+    var titleEndTime = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('End Time!');
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.provide)('titleEndTime', titleEndTime);
   }
 });
 
@@ -26776,13 +26843,15 @@ var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Vue3CountdownClock = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Vue3CountdownClock");
+
   var _component_home_contestants_item = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("home-contestants-item");
 
   var _component_ContentLoader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ContentLoader");
 
   var _component_laravel_vue_pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("laravel-vue-pagination");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [$data.searchActive && $data.dataLoaded ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [$data.contestants.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h5", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.total) + " result(s) for ", 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Vue3CountdownClock), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [$data.searchActive && $data.dataLoaded ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [$data.contestants.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h5", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.total) + " result(s) for ", 1
   /* TEXT */
   ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.search_values, function (value, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
@@ -76389,6 +76458,132 @@ exports["default"] = (sfc, props) => {
 
 /***/ }),
 
+/***/ "./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Vue3CountdownClock_vue_vue_type_template_id_5fece97c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Vue3CountdownClock.vue?vue&type=template&id=5fece97c */ "./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=template&id=5fece97c");
+/* harmony import */ var _Vue3CountdownClock_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Vue3CountdownClock.vue?vue&type=script&lang=js */ "./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=script&lang=js");
+/* harmony import */ var C_wamp64_www_little_miss_damsel_nigeria_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,C_wamp64_www_little_miss_damsel_nigeria_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Vue3CountdownClock_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Vue3CountdownClock_vue_vue_type_template_id_5fece97c__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+    
+
+    /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+        props: {
+            speed: {
+                type: Number,
+                default: 1000
+            }
+        },
+        setup () {
+            const title = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('title')
+            const deadline = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('deadline')
+            const h1Style = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('h1Style')
+            const timerStyle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('timerStyle')
+            const clockdiv = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('clockdiv')
+            const clockdivDiv = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('clockdivDiv')
+            const clockdivDivSpan = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('clockdivDivSpan')
+            const smalltext = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('smalltext')
+            const titleDays = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('titleDays')
+            const titleHours = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('titleHours')
+            const titleMinutes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('titleMinutes')
+            const titleSeconds = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('titleSeconds')
+            const titleEndTime = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('titleEndTime')
+            const styleEndTime = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('styleEndTime')
+
+            return {
+                deadline,
+                title,
+                timerStyle,
+                h1Style,
+                clockdiv,
+                clockdivDiv,
+                clockdivDivSpan,
+                smalltext,
+                titleDays,
+                titleMinutes,
+                titleHours,
+                titleSeconds,
+                titleEndTime,
+                styleEndTime
+            }
+        },
+        data () {
+            return {
+                currentTime: Date.parse(this.deadline) - Date.parse(new Date())
+            }
+        },
+        mounted () {
+            setTimeout(this.countdown, 1000)
+        },
+        computed: {
+            seconds () {
+                return Math.floor((this.currentTime / 1000) % 60)
+            },
+            minutes () {
+                return Math.floor((this.currentTime / 1000 / 60) % 60)
+            },
+            hours () {
+                return Math.floor((this.currentTime / (1000 * 60 * 60)) % 24)
+            },
+            days () {
+                return Math.floor(this.currentTime / (1000 * 60 * 60 * 24))
+            }
+        },
+        methods: {
+            formatTime (value) {
+                if (value < 10) {
+                    return '0' + value
+                }
+                return value
+            },
+            countdown () {
+                this.currentTime = Date.parse(this.deadline) - Date.parse(new Date())
+                if (this.currentTime > 0) {
+                    setTimeout(this.countdown, this.speed)
+                } else {
+                    this.currentTime = null
+                }
+            }
+        }
+    });
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Admin/AdminDashboard.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/Admin/AdminDashboard.vue ***!
@@ -76986,6 +77181,132 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HomeContestantsItem_vue_vue_type_template_id_734c12cf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HomeContestantsItem.vue?vue&type=template&id=734c12cf */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/home/HomeContestantsItem.vue?vue&type=template&id=734c12cf");
 
+
+/***/ }),
+
+/***/ "./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=script&lang=js":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _vue_loader_dist_index_js_ruleSet_0_use_0_Vue3CountdownClock_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _vue_loader_dist_index_js_ruleSet_0_use_0_Vue3CountdownClock_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../vue-loader/dist/index.js??ruleSet[0].use[0]!./Vue3CountdownClock.vue?vue&type=script&lang=js */ "./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=template&id=5fece97c":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=template&id=5fece97c ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_vue_loader_dist_index_js_ruleSet_0_use_0_Vue3CountdownClock_vue_vue_type_template_id_5fece97c__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_vue_loader_dist_index_js_ruleSet_0_use_0_Vue3CountdownClock_vue_vue_type_template_id_5fece97c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../vue-loader/dist/index.js??ruleSet[0].use[0]!./Vue3CountdownClock.vue?vue&type=template&id=5fece97c */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=template&id=5fece97c");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=template&id=5fece97c":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue?vue&type=template&id=5fece97c ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([$setup.timerStyle])
+  }, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([$setup.h1Style])
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.title), 5 /* TEXT, STYLE */),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([$setup.clockdiv])
+    }, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.clockdivDiv)
+      }, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.clockdivDivSpan)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatTime($options.days)), 5 /* TEXT, STYLE */),
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.smalltext)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.titleDays), 5 /* TEXT, STYLE */)
+      ], 4 /* STYLE */),
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.clockdivDiv)
+      }, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.clockdivDivSpan)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatTime($options.hours)), 5 /* TEXT, STYLE */),
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.smalltext)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.titleHours), 5 /* TEXT, STYLE */)
+      ], 4 /* STYLE */),
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.clockdivDiv)
+      }, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.clockdivDivSpan)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatTime($options.minutes)), 5 /* TEXT, STYLE */),
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.smalltext)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.titleMinutes), 5 /* TEXT, STYLE */)
+      ], 4 /* STYLE */),
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.clockdivDiv)
+      }, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.clockdivDivSpan)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatTime($options.seconds)), 5 /* TEXT, STYLE */),
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.smalltext)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.titleSeconds), 5 /* TEXT, STYLE */)
+      ], 4 /* STYLE */)
+    ], 4 /* STYLE */),
+    (!$data.currentTime)
+      ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+          key: 0,
+          class: "text-center",
+          style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($setup.styleEndTime)
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.titleEndTime), 5 /* TEXT, STYLE */))
+      : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+  ], 4 /* STYLE */))
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue3-clock-countdown/src/main.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/vue3-clock-countdown/src/main.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _components_Vue3CountdownClock_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Vue3CountdownClock.vue */ "./node_modules/vue3-clock-countdown/src/components/Vue3CountdownClock.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_components_Vue3CountdownClock_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
