@@ -50,11 +50,7 @@ class PaymentService
     public function searchPayments($request): array
     {
         $input = $request->all();
-        $request->session()->forget(['search_inputs']);
-
         // Create empty array for search values session
-        // Add all input to search inputs session, can be easily passed to export functionality
-        $request->session()->put('search_inputs', $input);
         $searchValues = [];
 
         if(!empty($input['term'])) {
@@ -69,17 +65,26 @@ class PaymentService
 //            $searchValues['payment_status'] = $input['payment_status'];
 //        }
 
-        $allPayments = $this->paymentWithRelations()->where(function($query) use ($input){
+        $allPayments = $this->paymentWithRelations()
+                ->select(
+            'payments.*',
+                    'contestants.id AS contestants_id',
+                    'contestants.name AS contestants_name'
+                )->leftjoin(
+                    'contestants',
+                     'contestants.id', '=', 'payments.contestant_id'
+                )->where(function($query) use ($input){
             $query->when(!empty($input['term']), static function($q) use($input){
-                $q->where('email', 'like' , '%'. $input['term'] .'%')
-                    ->where('name', 'like' , '%'. $input['term'] .'%')
-                    ->where('bank', 'like' , '%'. $input['term'] .'%')
-                    ->where('status', 'like' , '%'. $input['term'] .'%')
-                    ->where('payment_method', 'like' , '%'. $input['term'] .'%');
+                $q->where('payments.email', 'like' , '%'. $input['term'] .'%')
+                    ->orWhere('payments.name', 'like' , '%'. $input['term'] .'%')
+                    ->orWhere('payments.bank', 'like' , '%'. $input['term'] .'%')
+                    ->orWhere('payments.status', 'like' , '%'. $input['term'] .'%')
+                    ->orWhere('payments.payment_method', 'like' , '%'. $input['term'] .'%')
+                    ->orWhere('contestants.name', 'like' , '%'. $input['term'] .'%');
             });
 
         })->when(!empty($input['payment_method']), static function ($q) use($input){
-            return $q->where('payment_method', $input['payment_method']);
+            return $q->where('payments.payment_method', $input['payment_method']);
         });
 
         $payments = $allPayments->paginate(15);

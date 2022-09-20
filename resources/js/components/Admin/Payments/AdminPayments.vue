@@ -272,8 +272,8 @@ export default {
                     this.dataLoaded = true;
                     console.log(this.payments);
                 }).catch((error) => {
-                console.log(error);
-            });
+                    console.log(error);
+                });
         },
     },
     mounted(){
